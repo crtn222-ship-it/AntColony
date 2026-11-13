@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/layout_view_error.xml.flat",
+        "source": "com.antcolony.game.app-main-38:/layout/view_error.xml"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.antcolony.game.app-main-38:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.antcolony.game.app-debug-36:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.antcolony.game.app-main-38:/mipmap-xhdpi/ic_launcher_round.png"
+    }
+]

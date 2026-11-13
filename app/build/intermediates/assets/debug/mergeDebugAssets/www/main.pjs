@@ -1,0 +1,26 @@
+$meta
+  title = مستعمرة النمل — أساس لعبة استراتيجية
+  shortTitle = مستعمرة النمل
+  description = أساس لعبة استراتيجية ومحاكاة مستعمرة نمل مستوحاة من Pocket Ants: عالم ثلاثي الأبعاد، نملة قابلة للتحكم باللمس، جمع طعام، عمال، وأعداء.
+  tags = ants, strategy, simulation, 3d, game, arabic
+
+pride = {import:pride-plugin}
+uploadPlugin = {import:upload-plugin}
+
+// موازنة اللعب — يمكن تعديلها من هنا وتنعكس داخل اللعبة
+antTuning
+  worldHalf = 225
+  playerSpeed = 11
+  playerCapacity = 3
+  workerSpeed = 6.5
+  workerCapacity = 1
+  maxFoodOnGround = 120
+  hatchCostBase = 5
+  upgradeCostBase = 10
+  beetleCount = 4
+  creatureCount = 10
+  startWorkers = 3
+  autoForage = 1
+  forageRange = 80
+  scoutSight = 110
+  forageTries = 4

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="honey_gold">#c9a227</color>
+    <color name="leaf_green">#2f6b22</color>
+    <color name="soil_dark">#1c2b16</color>
+    <string name="app_name">مستعمر النمل</string>
+    <style name="Theme.AntColony" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/soil_dark</item>
+        <item name="android:statusBarColor">@color/soil_dark</item>
+        <item name="android:navigationBarColor">@color/soil_dark</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:fillColor="#2f6b22" android:pathData="M0,0h108v108h-108z" />
+    <!-- جسم النملة: بطن + صدر + رأس -->
+    <path android:fillColor="#3a2311"
+        android:pathData="M38,62m-16,0a16,11 0,1 1,32 0a16,11 0,1 1,-32 0" />
+    <path android:fillColor="#4e3013"
+        android:pathData="M56,60m-9,0a9,8 0,1 1,18 0a9,8 0,1 1,-18 0" />
+    <path android:fillColor="#5d3a1a"
+        android:pathData="M69,58m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+    <!-- الأرجل الست -->
+    <path android:fillColor="#00000000" android:strokeColor="#3a2311"
+        android:strokeWidth="3" android:strokeLineCap="round"
+        android:pathData="M44,56 L36,44 M50,58 L44,44 M56,58 L52,44 M44,64 L36,76 M50,62 L44,76 M56,62 L52,76" />
+    <!-- قرنا الاستشعار -->
+    <path android:fillColor="#00000000" android:strokeColor="#3a2311"
+        android:strokeWidth="3" android:strokeLineCap="round"
+        android:pathData="M76,54 L86,46 M76,60 L86,66" />
+    <!-- تاج الملكة -->
+    <path android:fillColor="#ffd93d" android:strokeColor="#8a6a00"
+        android:strokeWidth="1.5"
+        android:pathData="M64,44 L64,36 L68,40 L71,34 L74,40 L77,36 L77,44 Z" />
+</vector>

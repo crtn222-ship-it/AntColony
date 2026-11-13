@@ -1,0 +1,1166 @@
+<div id="gameRoot">
+  <div id="sceneHolder"></div>
+
+  <div id="loadingEl">
+    <div class="spin"></div>
+    <div>جاري تجهيز المستعمرة...</div>
+  </div>
+
+  <div id="vitalsPanel" hidden>
+    <div class="barRow"><span>❤️</span><div class="bar"><div id="hpFill"></div></div></div>
+    <div class="barRow"><span>⚡</span><div class="bar"><div id="stFill"></div></div></div>
+    <div class="barRow"><span>👑</span><div class="bar"><div id="queenFill"></div></div></div>
+  </div>
+  <div id="topBar" hidden>
+    <div class="stat"><span class="ico">🍯</span><span id="storeEl">0</span></div>
+    <div class="stat"><span class="ico">🐜</span><span id="workersEl">0</span></div>
+    <div class="stat"><span class="ico">⭐</span><span id="levelEl">1</span></div>
+    <div class="stat" id="waveStat" hidden><span class="ico">🌊</span><span id="waveEl">0🏆0</span></div>
+    <div class="stat mini"><span class="ico">🎒</span><span id="carriedEl">0/3</span></div>
+    <div class="sep"></div>
+  <div id="resBar" hidden>
+    <span>🌱<b id="resSeedEl">0</b></span><span>🍃<b id="resLeafEl">0</b></span><span>🍎<b id="resFruitEl">0</b></span><span>🍪<b id="resCrumbEl">0</b></span><span>🐜<b id="resWorkerEl">0</b></span><span>⚔️<b id="resSoldierEl">0</b></span><span>🔭<b id="resScoutEl">0</b></span><span>🧡<b id="resAmberEl">0</b></span><span>👑<b id="resQueenEl">0%</b></span><span>🌿<b id="resLifeEl">0</b></span><span>🌺<b id="resHealEl">0</b></span><span>💠<b id="resCrysEl">0</b></span><span>✨<b id="resPolEl">0</b></span><span>🧪<b id="resMedEl">0</b></span>
+  </div>
+  </div>
+  <div id="statusPill" hidden>🐜 <span id="statusPillNum">0</span> عمال يجمعون الطعام</div>
+
+  <button id="gearBtn" aria-label="الإعدادات" title="⚙️ الضبط">⚙️</button>
+  <div id="mapWrap" hidden>
+    <canvas id="minimapCtn" width="148" height="148"></canvas>
+    <button id="mapCloseBtn" aria-label="إغلاق الخريطة">✖</button>
+    <span id="mapLabel">🗺️ الخريطة</span>
+  </div>
+  <button id="mapOpenBtn" hidden aria-label="فتح الخريطة">🗺️</button>
+  <div id="mapStack" hidden>
+    <button id="armyBtn" aria-label="زر الجيش">⚔️<small>جيش</small></button>
+    <button id="nestBtn" aria-label="دخول العش">🏠<small>عش</small></button>
+    <button id="questBtn">📜<small>مهمات</small></button>
+  </div>
+
+  <div id="typeBar" hidden>
+    <span>🌱<b id="typeSeedEl">0</b></span>
+    <span>🍃<b id="typeLeafEl">0</b></span>
+    <span>🍎<b id="typeFruitEl">0</b></span>
+    <span>🍪<b id="typeCrumbEl">0</b></span>
+    <span>🧡<b id="typeAmberEl">0</b></span>
+    <span>🐜<b id="typeWorkerEl">0</b></span>
+    <span>⚔️<b id="typeSoldierEl">0</b></span>
+    <span>🔭<b id="typeScoutEl">0</b></span>
+  </div>
+
+  <div id="zoomCtn" hidden>
+    <button id="zoomInBtn" aria-label="تكبير">＋</button>
+    <button id="zoomOutBtn" aria-label="تصغير">－</button>
+  </div>
+
+  <button id="menuBtn" type="button" aria-label="فتح القائمة" aria-controls="actionCtn" aria-expanded="false" hidden>☰</button>
+  <div id="actionCtn" hidden>
+    <button id="worldBtn">🌍 العالم</button>
+    <button id="beastBtn">🐾 مخلوقات</button>
+    <button id="shopBtn">🛒 تطوير</button>
+    <button id="hatchBtn">🐜 <span id="hatchLbl">فقس عامل</span> (<span id="hatchCostEl">5</span> 🍯)</button>
+    <button id="upgradeBtn">🎒 <span id="upgradeLbl">حمل</span> (<span id="upgradeCostEl">10</span> 🍯)</button>
+    <button id="trainBtn">🎖️ تدريب</button>
+    <button id="buildBtn">🏠 بناء</button>
+  </div>
+  <div id="worldPanel" hidden>
+    <div id="worldTitle">🌍 العالم والمهمات</div>
+    <div id="worldTabs">
+      <button id="wtabRegions">🌍 مناطق</button>
+      <button id="wtabQuests">📜 مهمات</button>
+      <button id="wtabShop">🛒 متجر</button>
+    </div>
+    <div id="worldBody"></div>
+    <button id="worldCloseBtn">إغلاق</button>
+  </div>
+
+  <div id="cmdBar" hidden>
+    <div id="selCount">محدد: 0</div>
+    <button id="cmdSelWorkBtn">🐜 عمال</button>
+    <button id="cmdSelSoldBtn">⚔️ جنود</button>
+    <button id="cmdInjBtn">🤕 مصابون</button>
+    <button id="cmdHomeBtn">🏠 منزل</button>
+    <button id="cmdHoldBtn">📍 ثبات</button>
+    <button id="cmdClearBtn">✖</button>
+  </div>
+  <button id="ctxBtn" hidden>😵 أسر</button>
+  <div id="quickBar" hidden>
+    <button id="qAtkBtn" aria-label="هجوم شامل">⚔️</button>
+    <button id="qFolBtn" aria-label="اتبعني">🐜</button>
+  </div>
+  <div id="hpCtn"></div>
+  <div id="dmgCtn"></div>
+
+  <canvas id="underCanvas" hidden></canvas>
+ <div id="underBar" hidden>
+   <button id="underBackBtn">⬆️ سطح</button>
+   <div id="underHint">اضغط على تراب لامع للحفر</div>
+ </div>
+  <div id="nestHud" hidden>
+    <button id="nestExitBtn">⬆️<small>سطح</small></button>
+    <div id="nestLv"><span id="nestAntIco">🐜</span><span id="nestLvTxt">Lv.1</span><div id="nestXpBar"><div id="nestXpFill"></div></div></div>
+    <div id="nestRes"></div>
+    <button id="nestSetBtn" aria-label="إعدادات">⚙️</button>
+  </div>
+  <button id="nestQuestBtn" hidden>📋<span id="nestQuestDot">!</span><small>المهام</small></button>
+  <div id="nestSide" hidden>
+    <button id="nestBattleBtn">⚔️<small>معركة</small></button>
+    <button id="nestWorldBtn">🌍<small>العالم</small></button>
+    <button id="nestShopBtn">🏪<small>المتجر</small></button>
+  </div>
+  <div id="nestBottom" hidden>
+    <button id="nestBuildBtn">🪖<small>بناء</small></button>
+    <button id="nestUpBtn">⬆️<small>ترقية</small></button>
+    <button id="nestTidyBtn">🧹<small>ترتيب</small></button>
+    <button id="nestArmyBtn">🐜<small>جيش</small></button>
+    <button id="nestGeneBtn">🧬<small>جينات</small></button>
+  </div>
+  <button id="nestBackFab" hidden><span id="nestBackArr">⬆️</span><span>🐜</span><small>العودة إلى السطح</small></button>
+  <div id="nestZoom" hidden>
+    <button id="nestZoomIn" aria-label="تكبير العش">＋</button>
+    <button id="nestZoomFit" aria-label="عرض افتراضي">⤢</button>
+    <button id="nestZoomOut" aria-label="تصغير العش">－</button>
+  </div>
+  <div id="roomPanel" hidden>
+    <div id="roomTitle"></div>
+    <div id="roomDesc"></div>
+    <div id="casteRow" hidden>
+      <span class="casteLbl" id="casteLbl">البيض القادم:</span>
+      <button id="casteWorkerBtn">🐜 عامل</button>
+      <button id="casteSoldierBtn">⚔️ جندي</button>
+      <button id="casteScoutBtn">🔭 كشاف</button>
+    </div>
+    <button id="queenMoveBtn" hidden>🚚 نقل الملكة لمكان آخر</button>
+    <button id="fertBtn" hidden>👑 خصوبة الملكة</button>
+    <button id="geneOpenBtn" hidden>🧬 فتح المركز</button>
+  <button id="trainOpenBtn" hidden>🎖️ فتح المركز</button>
+  <button id="archerBtn" hidden>🏹 تطوير الرماية</button>
+  <button id="sackBtn" hidden>🎒 تطوير الأكياس</button>
+    <button id="roomUpgradeBtn"></button>
+    <button id="roomCloseBtn">إغلاق</button>
+  </div>
+  <div id="buildMenu" hidden>
+    <div id="buildTitle"></div>
+    <div id="buildList"></div>
+    <button id="buildCancelBtn">إلغاء</button>
+  </div>
+
+  <div id="beastPanel" hidden>
+    <div id="beastTitle">🐾 مجموعة المخلوقات</div>
+    <div id="beastCount"></div>
+    <div id="beastList"></div>
+    <button id="beastCloseBtn">إغلاق</button>
+  </div>
+  <div id="genePanel" hidden>
+    <div id="geneTitle">🧬 مركز العلاج والتطور</div>
+    <div id="geneTabs">
+      <button id="geneTabSick">🤕 مصابون</button>
+      <button id="geneTabHeal">🛏️ علاج</button>
+      <button id="geneTabEggs">🥚 بيوض</button>
+      <button id="geneTabGene">🧪 جينات</button>
+      <button id="geneTabUp">⬆️ تطوير</button>
+    </div>
+    <div id="geneSub"></div>
+    <div id="geneBody"></div>
+    <button id="geneCloseBtn">إغلاق</button>
+  </div>
+  <div id="trainPanel" hidden>
+    <div id="trainTitle">🎖️ مركز التدريب العسكري</div>
+    <div id="trainTabs">
+      <button id="trainTabConv">🔄 تحويل</button>
+      <button id="trainTabSold">🎖️ جنود</button>
+      <button id="trainTabYard">⏳ تدريب</button>
+      <button id="trainTabUp">⬆️ تطوير</button>
+    </div>
+    <div id="trainSub"></div>
+    <div id="trainBody"></div>
+    <button id="trainCloseBtn">إغلاق</button>
+  </div>
+  <button id="helpBtn" hidden aria-label="مساعدة">؟</button>
+  <button id="pauseBtn" hidden aria-label="إيقاف مؤقت">⏸️</button>
+
+  <div id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpHeading" hidden>
+    <div id="helpCard">
+      <h3 id="helpHeading">🐜 كيف تلعب؟</h3>
+      <ul>
+        <li>👑 <b>القيادة من فوق — بلا عصا وبلا نملة تتحرك بها</b>: القائد معتكف في العش وأنت تقود جيشك من فوق مثل ألعاب المدن: <b>المس وحرك</b> لتحريك الكاميرا، و<b>المس مطوّلاً ثم اسحب</b> لرسم مربع يحدد جيشك (عمال/جنود/حلفاء)، و<b>لمستان على وحدة</b> لتحديد كل وحدات نوعها، و<b>انقر</b>: طعام=جمع، عدو=هجوم، أرض=تحرك، وحدة=تبديل تحديدها. <b>إصبعان</b> لتحريك النظر والتقريب، والنقر على <b>الخريطة المصغرة 🗺️</b> يقفز بالكاميرا لتلك النقطة، وانقر <b>الحلقة الذهبية</b> عند الخشبة للعبور إلى الشجرة العتيقة. (على الكمبيوتر: WASD/الأسهم تحرك الكاميرا).</li>
+        <li>🍎🍉 <b>ولائم عملاقة</b> بالعالم (تفاحة 400 🍯/بطيخة ~450/يقطين ~500): حصّد منها على دفعات كثيرة — كل حملة 10-15 🍯! تُرى من بعيد <b>بعمود ذهبي</b> وعلامة كبيرة بالخريطة — ومن تخلص <b>تطلع غيرها بمكان ثاني</b>.</li>
+        <li>اقترب من <b>البذور وأوراق الشجر</b> لالتقاطها تلقائياً.</li>
+        <li>مصادر كبيرة: <b>أكوام البذور والفتات وأوراق الشجر وشجيرات التوت 🍎</b> — قف بجانبها للحصاد المتكرر.</li>
+        <li>عند امتلاء حمولتك تعود النملة <b>تلقائياً للعش</b> (السهم الذهبي يرشدك، وأي سحب يلغي العودة).</li>
+        <li>ارجع إلى <b>تل العش</b> البني لإيداع الطعام في المخزون 🍯.</li>
+        <li>☰ <b>الشريط السفلي</b> دائماً أمامك: 🌍 العالم و🐾 مخلوقات و🛒 تطوير و🎒 حمل و🐜 فقس عامل — والعمود الأيمن فيه ⚔️ جيش و🏠 عش و📜 مهمات و⚙️ ضبط، وعمود اليسار تبويبات الجيش (عمال/جنود/مصابون/منزل/ثبات).</li>
+        <li>🌍 <b>العالم</b>: 4 مناطق (غابة 🌲/حديقة 🌸/شاطئ 🏖️/صخور 🪨) بموارد خاصة (🌰🌸🐚🍄) — ادخلها لاكتشافها! 📜 <b>مهمات رئيسية ويومية</b> بمكافآت، 🛒 <b>متجر</b> ترقيات بالموارد، ⭐ <b>مستويات خبرة</b>، و🎲 <b>أحداث عشوائية</b> (حشرات نادرة وهجمات)!</li>
+        <li>🌍 <b>العالم الثاني — الشجرة العتيقة 🌳</b>: ابحث عن <b>الخشبة 🪵</b> في الغابة واعبر <b>الحلقة المتوهجة</b> لتنتقل لعالم الشجرة العملاقة! فيها <b>كهرمان 🧡</b> ثمين (قيمة 5🍯) من أجزاء الشجرة، و<b>نمل أبيض 🤍</b> عدائي يقتله جنودك لتأخذ الكهرمان — ودمّر <b>تلهم الأبيض</b> لغنائم ضخمة. العودة من حلقة الشجرة. 🚪 <b>الدخول بأمرك فقط</b>: حدد وحداتك وانقر قرب البوابة فيذهبون ويعبرون لوحدهم (الكاميرا تبقى مكانها) — لا دخول تلقائي أبداً!</li>
+        <li>🪱 <b>أم أربعة وأربعين — زعيم الشجرة</b>: حشرة مدرعة (520❤️/22💥) تتجول وحدها وتعاود الظهور — <b>لا تهجم بجيش ضعيف!</b> الخطة: 🪲 <b>قدّم الدعسوقة</b> لتلقي الضرب (ضررها +50% عليها)، 🏹 <b>الرماة يُخدّرونها</b> بالأشواك (3 طبقات: أبطأ وأضعف)، ⚔️ ثم اهجم <b>بجنود مطورين</b>. قتلها يُسقط <b>عظاماً 🦴</b>: أكل وتطوير «تسليح عظمي»!</li>
+        <li>احذر <b>الخنافس</b> الحمراء! تهاجمك وتسقط ما تحمله.</li>
+        <li>🐾 <b>مخلوقات برية</b> تتجول في العالم: خنافس وعناكب ويرقات وفراشات وجنادب — وبعضها <b>نادر وأسطوري</b>! أرسل جنودك لهزيمتها، ثم <b>انقر المخلوق الدائخ 😵 لأسره</b> وضمه لمجموعتك.</li>
+        <li>⚔️ <b>الحرب</b>: مستعمرتا <b>الظل 🖤 والحمراء 👹</b> تعيشان في الخريطة بجيوشهما! حدد جنودك وانقر عدواً أو تلاً معادياً للهجوم، ودفاعك التلقائي يتصدى للقريبين. دمر التل لغنائم 🍯 ضخمة — والحمراء بزعيمتها <b>الملكةة الحمراء 👑</b> تهيج عند نصف الصحة!</li>
+        <li>🚨 <b>الغارات</b>: أول غارة <b>سارق واحد تحذيري</b> — أدخل عمالك للعش واقتله! وبلا جنود <b>🛡️ استنفار تلقائي</b>: عمالك الأصحاء يدافعون مؤقتاً. والغارات الكاملة تبدأ من <b>المستوى 4 أو أول جندي</b>. وللحل الدائم: ادخل العش 🏠 واحفر <b>غرفة ثكنة الجنود ⚔️</b> — بيض الملكة 👑 يتحول للجنود تلقائياً! زر 🏠 <b>عش</b> يأمر جيشك بحراسة المدخل. 🗡️ <b>المطارِد</b> صياد لصوص (×2 ضد السارقين).</li>
+        <li>🐾 زر المخلوقات يفتح <b>مجموعتك</b>: رقِّ مخلوقاتك بال🍯 (حتى مستوى 5) و<b>أطلقها لتقاتل بجانبك</b> وتتبعك — الدبابات (خنفساء 🐞/وحيد قرن 🦏...) 🛡️ تتحمل الضربات و🎒 تحمل الطعام القريب للعش — ومن سقط منهم 💀 أحيِه من اللوحة (3 مرات لكل مخلوق) — ويمكنك تحديدها وتحريكها كجيشك!</li>
+        <li>🍃 <b>علاج الراحة</b>: المصابون يتعالجون ببطء وهم مرتاحون — داخل العش (2%/ث) أو ثابتون بلا قتال (1%/ث) — مجاني ومن البداية، والعيادة 🧬 تبقى أسرع بكثير.</li>
+        <li>ادخل <b>العش 🕳️</b> (نقرة على التل - يجب أن تكون قريباً منه): احفر ممرات وغرفاً رملية — <b>ملكة، مخزن، حضانة، مسكن عمال، ثكنة جنود</b> — كل غرفة تنفع مستعمرتك فعلياً ويمكن ترقيتها حتى المستوى 5. وأنت في الداخل <b>لا شيء يؤذيك</b>. الملكة في غرفتها: بيضات بيضاء بجانبها بعدد مستواها والباقي في الحضانة - انقلها بزر النقل واختار نوع البيض من غرفتها.</li>
+        <li>🎯 <b>وضع الجيش</b>: زر ⚔️ <b>جيش</b> تحت الخريطة (ومعه ⚙️ الضبط) — حدد 🐜 عمال أو ⚔️ جنود أو 🤕 مصابين ثم <b>انقر الهدف مباشرة بدون أي زر إضافي</b>: عدو = هجوم مقصود حتى السقوط، طعام = جمع (والجنود يرافقون حراسة)، أرض = تحرك ثم ثبات بنطاق ضيق. زر 📍 <b>ثبات</b> يجعل المحددين يحرسون أماكنهم الحالية ولا يطاردون بعيداً — حلقة ذهبية تُظهر النطاق (مثالي لسرقة 🧡 من الشجرة دون التورط مع التل الأبيض). زر 🏠 <b>منزل</b> يُعيد المحددين للعش. ومن ⚙️ الإعدادات ← 🖌️ <b>إعدادات الأزرار والشاشة</b> تنقل أي زر وتكبّره وتخفيه كما تشاء.</li>
+        <li>👆👆 <b>الضغط المزدوج على عدو</b> = تركيز هجوم <b>كل</b> جيشك (جنود + حلفاء) عليه دفعة واحدة بلا تحديد — للتخلص من التهديد الأكبر أولاً! وزرا ⚔️/🐜 السريعان أسفل اليسار: هجوم شامل على أقرب عدو / تجميع الجيش حولك. والزر السياقي 📲 يعرض نفسه تلقائياً: 😵 أسر عند الدائخ، 🕳️ دخول عند العش.</li>
+        <li>🧬 <b>تطوير الجينات صار سهلاً</b>: افتح 🧬 مركز العلاج والتطور ← تبويب 🧪 <b>جينات</b> وطوّر ⚔️ <b>هجوم الجنود</b> و🛡️ <b>درعهم</b> و🐜 <b>قوة العمال</b> (5 مستويات لكل واحدة) — كل ترقية <b>دائمة</b> وتشمل جيشك الحالي فوراً، والملكة 👑 <b>تبيض بيضاً مطوراً تلقائياً</b> يفقس أقوى! مثال: الجندي اللي يضرب 6 يصير يضرب 8 ثم 10 وهكذا. وتبويب 🥚 <b>بيوض</b> فيه ⭐ <b>طلب نخبة ذهبية</b>: ادفع 🍯 واختار العدد (مثلاً 20 عاملة) — البيض الجاي يتحوّل للمختبر ويفقس <b>بلون ذهبي مميز وأقوى</b>، ومن يخلص العدد يرجع البيض عادياً!</li>
+        <li>🧡 <b>الكهرمان يطوّر جيشك</b>: ادخل العش وافتح <b>ثكنة الجنود ⚔️</b> لشراء 🏹 <b>الرماية</b> (3 مستويات: جنودك يطلقون أشواك الكهرمان عن بُعد ويرمون من مواقعهم بلا تقدم)، وافتح <b>مسكن العمال 🐜</b> لشراء 🎒 <b>الأكياس الكهرمانية</b> (+1 حمل للعمال كل مستوى) — وافتح <b>غرفة الملكة 👑</b> لشراء <b>الخصوبة</b> (3 مستويات: بيض أسرع وحضن أوسع، والملكة تُسرّع تلقائياً كلما نقص جيشك لتعويض الموتى) — و<b>رقِّ الحضانة 🥚</b> فهي أيضاً تُسرّع الملكة والنمو معاً. البداية بطيئة عمداً: التطوير هو طريق السرعة!</li>
+        <li>قرّب بإصبعين أو عجلة الفأرة، وزرّا ＋/－ يعملان أيضاً.</li>
+      </ul>
+      <button id="helpCloseBtn">فهمت!</button>
+    </div>
+  </div>
+
+  <div id="startScreen" role="dialog" aria-modal="true" aria-labelledby="startHeading" hidden>
+    <div id="startCard">
+      <div id="startAnt">🐜</div>
+      <h2 id="startHeading">مستعمرة النمل</h2>
+      <p id="startSub">ابنِ مستعمرتك • اجمع الطعام • قاتل الأعداء</p>
+      <div id="diffRow">
+        <div id="diffLabel">مستوى الصعوبة:</div>
+        <div id="diffBtns">
+          <button id="diffBeginnerBtn" data-diff="beginner">🌱 مبتدئ</button>
+          <button id="diffEasyBtn" data-diff="easy">😌 سهل</button>
+          <button id="diffNormalBtn" data-diff="normal">⚔️ متوسط</button>
+          <button id="diffHardBtn" data-diff="hard">🔥 صعب</button>
+        </div>
+        <div id="diffDesc"></div>
+      </div>
+      <p id="startSaveInfo"></p>
+      <button id="startPlayBtn">▶️ ابدأ اللعب</button>
+      <button id="startHelpBtn" class="ghost">📖 كيف تلعب؟</button>
+      <button id="startWipeBtn" class="ghost danger">🆕 لعبة جديدة</button>
+    </div>
+  </div>
+  <div id="pausePanel" role="dialog" aria-modal="true" aria-labelledby="pauseHeading" hidden>
+    <div id="pauseCard">
+      <h3 id="pauseHeading">⏸️ إيقاف مؤقت</h3>
+      <button id="resumeBtn">▶️ استئناف</button>
+      <button id="settingsBtn" class="ghost">⚙️ إعدادات</button>
+      <button id="saveNowBtn" class="ghost">💾 حفظ الآن</button>
+      <button id="homeBtn" class="ghost">🏠 القائمة الرئيسية</button>
+    </div>
+  </div>
+  <div id="settingsPanel" role="dialog" aria-modal="true" aria-labelledby="settingsHeading" hidden>
+    <div id="setCard">
+      <h3 id="settingsHeading">⚙️ إعدادات</h3>
+      <button id="setSoundBtn" class="ghost">🔊 الصوت: يعمل</button>
+      <button id="setQualityBtn" class="ghost">🎨 جودة الصورة: تلقائية</button>
+      <select id="setLangBtn" class="ghost" aria-label="🌐 اللغة"></select>
+      <button id="setVibrateBtn" class="ghost">📳 الاهتزاز: يعمل</button>
+      <button id="setDiffBtn" class="ghost">⚔️ الصعوبة: متوسط</button>
+      <button id="setUiLayoutBtn" class="ghost">🖌️ أزرار واللمس</button>
+      <button id="setHelpBtn" class="ghost">📖 تعليمات</button>
+      <button id="setWipeBtn" class="ghost danger">🗑️ مسح الحفظ</button>
+      <button id="setAboutBtn" class="ghost">👤 من نحن</button>
+      <button id="setUpdateBtn" class="ghost">🔄 النسخة</button>
+      <button id="setPrivacyBtn" class="ghost">🔒 الخصوصية</button>
+      <button id="settingsCloseBtn">إغلاق</button>
+    </div>
+  </div>
+  <div id="aboutPanel" role="dialog" aria-modal="true" aria-labelledby="aboutHeading" hidden>
+    <div id="aboutCard">
+      <h3 id="aboutHeading">👤 من نحن</h3>
+      <p id="aboutTxt">🐜 <b>مستعمرة النمل</b> — لعبة استراتيجية عربية: ابنِ مستعمرتك، قُد جيوش النمل، اجمع الطعام، ووسّع مملكتك فوق الأرض وتحتها.</p>
+      <p id="aboutDesigner">🎨 التصميم والتطوير: <b>حسين الدخيل</b></p>
+      <a id="waBtn" href="https://wa.me/9647740400741?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B" target="_blank" rel="noopener">💬 تواصل واتساب</a>
+      <button id="aboutCloseBtn">إغلاق</button>
+    </div>
+  </div>
+  <div id="privacyPanel" role="dialog" aria-modal="true" aria-labelledby="privacyHeading" hidden>
+    <div id="aboutCard">
+      <h3 id="privacyHeading">🔒 الخصوصية</h3>
+      <p id="aboutTxt">🐜 مستعمر النمل يعمل كاملا على جهازك: الحفظ في متصفحك فقط ولا نستلم اي بيانات. زر واتساب يفتح محادثة فقط ان ضغطته انت.</p>
+      <button id="privacyCloseBtn">إغلاق</button>
+    </div>
+  </div>
+  <div id="toastCtn"></div>
+  <div id="tutBar" hidden>
+    <div id="tutTxt">🐜 مرحباً بك في مستعمرتك!</div>
+    <div id="tutProg">خطوة 1/6</div>
+    <button id="tutSkipBtn">تخطي التعليم ✖</button>
+  </div>
+  <div id="endPanel" role="dialog" aria-modal="true" aria-labelledby="endHeading" hidden>
+    <div id="endCard">
+      <div id="endIcon">🏆</div>
+      <h3 id="endHeading">النصر!</h3>
+      <p id="endDesc"></p>
+      <div id="endStats"></div>
+      <button id="endPrimaryBtn">مواصلة اللعب</button>
+      <button id="endFreeBtn" class="ghost" hidden>🌿 لعب حر بسلام</button>
+      <button id="endSecondaryBtn" class="ghost">مستعمرة جديدة</button>
+    </div>
+  </div>
+  <div id="editBanner" hidden>
+    <div id="editBannerRow">
+      <span>✋ اسحب أي زر لتحريكه • قرص بإصبعين لتكبيره • انقر زراً لخياراته • أسقط الزر فوق قائمة لإدخاله فيها</span>
+      <button id="editResetBtn">↩️ استعادة</button>
+      <button id="editDoneBtn">✓ تم</button>
+    </div>
+    <button id="editHiddenBtn">👁 الأزرار المخفية (<span id="editHiddenCount">0</span>)</button>
+    <div id="editHiddenList" hidden></div>
+  </div>
+  <div id="editTool" hidden>
+    <span id="editSizeVal">100%</span>
+    <button id="editPlusBtn" aria-label="تكبير">＋</button>
+    <button id="editMinusBtn" aria-label="تصغير">－</button>
+    <button id="editHideBtn" aria-label="إخفاء">👁</button>
+    <button id="editDockBtn" aria-label="إرجاع لمكانه">📌</button>
+  </div>  <div id="fadeVeil" hidden></div>
+  <div id="joyBase" hidden><div id="joyKnob"></div></div>
+  <div id="damageFlash" hidden></div>
+  <div id="selRect" hidden></div>
+  <div id="centerMsg" hidden></div>
+</div>
+
+<style>
+  html, body { margin:0; padding:0; overflow:hidden; height:100%; overscroll-behavior:none; }
+  body { text-align:right; font-family:"Segoe UI", Tahoma, Arial, sans-serif; background:#79a85b; color:#1c2b16; }
+  #gameRoot { position:fixed; inset:0; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none; }
+  #sceneHolder, #sceneHolder canvas { position:absolute; inset:0; width:100% !important; height:100% !important; display:block; }
+  #loadingEl { position:absolute; inset:0; display:flex; flex-direction:column; gap:14px; align-items:center; justify-content:center; background:linear-gradient(180deg,#8fbf6a,#5d8a44); color:#fff; font-size:18px; z-index:40; }
+  #loadingEl .spin { width:44px; height:44px; border-radius:50%; border:5px solid rgba(255,255,255,.35); border-top-color:#fff; animation:sp 0.9s linear infinite; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+  #topBar { position:absolute; top:10px; right:10px; left:10px; display:flex; gap:8px; align-items:center; justify-content:flex-start; flex-wrap:wrap; z-index:20; pointer-events:none; direction:rtl; }
+  .stat { background:rgba(20,30,15,.72); color:#fff; border:1px solid rgba(255,255,255,.25); padding:6px 10px; border-radius:12px; font-size:14px; font-weight:700; backdrop-filter:blur(4px); }
+  .stat .ico { margin-left:6px; }
+  .bars { display:flex; flex-direction:column; gap:4px; margin-right:auto; min-width:150px; }
+  .barRow { display:flex; align-items:center; gap:6px; font-size:13px; background:rgba(20,30,15,.72); padding:3px 8px; border-radius:10px; color:#fff; }
+  .bar { flex:1; height:8px; background:rgba(255,255,255,.25); border-radius:6px; overflow:hidden; min-width:90px; }
+  .bar > div { height:100%; width:100%; border-radius:6px; transition:width .15s; }
+  #hpFill { background:linear-gradient(90deg,#ff5d5d,#ff9d5d); }
+  #stFill { background:linear-gradient(90deg,#37d67a,#b8f36b); }
+  #queenFill { background:linear-gradient(90deg,#b45cff,#ffd93d); }
+  #mapWrap { position:absolute; top:64px; left:10px; width:132px; height:132px; z-index:20; }
+  #gameRoot.mapRight #mapWrap { left:auto; right:10px; }
+  #minimapCtn { width:100%; height:100%; display:block; border-radius:14px; border:2px solid rgba(255,255,255,.7); background:rgba(20,35,15,.78); box-shadow:0 4px 14px rgba(0,0,0,.3); }
+  #mapCloseBtn { position:absolute; top:-11px; left:-11px; width:30px; height:30px; border-radius:50%; border:2px solid #fff; background:rgba(20,30,15,.92); color:#fff; font-size:13px; font-weight:900; cursor:pointer; z-index:21; line-height:1; padding:0; }
+  #mapOpenBtn { position:absolute; top:64px; left:10px; width:46px; height:46px; border-radius:14px; border:2px solid rgba(255,255,255,.7); background:rgba(20,30,15,.85); color:#fff; font-size:22px; cursor:pointer; z-index:20; padding:0; }
+  #gameRoot.mapRight #mapOpenBtn { left:auto; right:10px; }
+  #mapOpenBtn[hidden], #mapWrap[hidden] { display:none; }
+  #typeBar { position:absolute; bottom:66px; right:10px; display:flex; gap:6px; z-index:20; direction:rtl; }
+  #typeBar span { background:rgba(20,30,15,.72); color:#fff; border:1px solid rgba(255,255,255,.25); padding:4px 8px; border-radius:10px; font-size:12px; font-weight:700; }
+  #typeBar b { margin-right:4px; }
+  #zoomCtn { position:absolute; left:10px; bottom:86px; display:flex; flex-direction:column; gap:8px; z-index:20; }
+  #zoomCtn button { width:46px; height:46px; border-radius:50%; border:2px solid rgba(255,255,255,.7); background:rgba(20,30,15,.72); color:#fff; font-size:22px; font-weight:900; cursor:pointer; }
+  #zoomCtn button:active { transform:scale(.93); }
+  #menuBtn { position:absolute; right:10px; bottom:12px; width:44px; height:44px; border-radius:50%; border:2px solid rgba(255,255,255,.7); background:rgba(43,74,28,.9); color:#fff; font-size:20px; font-weight:900; z-index:21; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  #menuBtn[hidden] { display:none; }
+  #actionCtn { position:absolute; bottom:62px; right:10px; width:186px; display:flex; flex-direction:column; gap:6px; z-index:20; direction:rtl; }
+  #actionCtn[hidden] { display:none; }
+  #actionCtn button { padding:9px 8px; border-radius:12px; border:1px solid rgba(255,255,255,.65); background:rgba(43,74,28,.94); color:#fff; font-size:13px; font-weight:800; cursor:pointer; white-space:nowrap; width:100%; }
+  #actionCtn button.mini { font-size:12px; }
+  .stat.mini { font-size:11px; padding:4px 8px; border-radius:10px; }
+  #actionCtn button:disabled { opacity:.45; cursor:default; filter:grayscale(.5); }
+  #actionCtn button:not(:disabled):active { transform:scale(.97); }
+  #helpBtn { position:absolute; top:206px; left:10px; width:40px; height:40px; border-radius:50%; border:2px solid rgba(255,255,255,.7); background:rgba(20,30,15,.72); color:#fff; font-size:20px; font-weight:900; z-index:20; cursor:pointer; }
+  #cmdBar { position:absolute; bottom:118px; right:10px; left:52%; display:flex; gap:5px; z-index:26; direction:rtl; flex-wrap:wrap; align-items:center; }
+  #cmdBar[hidden] { display:none; }
+  #selCount { width:100%; text-align:center; background:rgba(20,30,15,.85); color:#ffd93d; border:1px solid #ffd93d; padding:5px 8px; border-radius:10px; font-size:11px; font-weight:800; }
+  #cmdBar button { flex:1 1 28%; padding:7px 2px; border-radius:10px; border:1px solid rgba(255,255,255,.65); background:rgba(120,40,20,.92); color:#fff; font-size:11px; font-weight:800; cursor:pointer; white-space:nowrap; font-family:inherit; }
+  #cmdBar button:active { transform:scale(.96); }
+  #ctxBtn { position:absolute; bottom:170px; left:50%; transform:translateX(-50%); z-index:27; padding:12px 26px; border-radius:999px; border:2px solid #ffe9a8; background:linear-gradient(145deg,#2f6b22,#1c4423); color:#fff; font-size:16px; font-weight:900; cursor:pointer; font-family:inherit; box-shadow:0 6px 22px rgba(0,0,0,.5); animation:pop .25s ease-out; white-space:nowrap; }
+  #ctxBtn:active { transform:translateX(-50%) scale(.95); }
+  #quickBar { position:absolute; bottom:120px; left:10px; z-index:26; display:flex; flex-direction:column; gap:8px; }
+  #quickBar[hidden] { display:none; }
+  #quickBar button { width:52px; height:52px; border-radius:50%; border:2px solid rgba(255,255,255,.7); background:rgba(120,40,20,.92); color:#fff; font-size:24px; cursor:pointer; font-family:inherit; box-shadow:0 4px 14px rgba(0,0,0,.45); }
+  #quickBar button:active { transform:scale(.93); }
+  #hpCtn { position:absolute; inset:0; z-index:18; pointer-events:none; overflow:hidden; }
+  #dmgCtn { position:absolute; inset:0; z-index:19; pointer-events:none; overflow:hidden; }
+  .dmgnum { position:absolute; transform:translate(-50%,-100%); font-weight:900; font-size:15px; pointer-events:none; text-shadow:0 1px 3px #000, 0 0 6px rgba(0,0,0,.6); animation:dup .85s ease-out forwards; white-space:nowrap; }
+  @keyframes dup { to { transform:translate(-50%,-240%); opacity:0; } }
+  .uhp { position:absolute; transform:translate(-50%,-100%); width:52px; pointer-events:none; }
+  .uhp .bl { font-size:9px; text-align:center; line-height:1.2; text-shadow:0 1px 2px #000; }
+  .uhp .bar { height:5px; background:rgba(0,0,0,.6); border-radius:3px; overflow:hidden; border:1px solid rgba(255,255,255,.6); }
+  .uhp .fill { height:100%; border-radius:3px; }
+  #helpModal { position:absolute; inset:0; background:rgba(0,0,0,.55); display:flex; align-items:center; justify-content:center; z-index:50; padding:18px; }
+  #helpCard { background:#fffdf4; border-radius:18px; padding:18px; max-width:420px; width:100%; box-shadow:0 12px 40px rgba(0,0,0,.4); direction:rtl; }
+  #helpCard h3 { margin:0 0 8px; }
+  #helpCard ul { margin:0 0 12px; padding-right:20px; line-height:1.9; font-size:14px; }
+  #helpCloseBtn { width:100%; padding:11px; border:none; border-radius:12px; background:#2f6b22; color:#fff; font-size:16px; font-weight:800; cursor:pointer; }
+  #toastCtn { position:absolute; top:calc(8px + env(safe-area-inset-top)); right:0; left:0; display:flex; flex-direction:column; align-items:center; gap:6px; z-index:55; pointer-events:none; }
+  #fadeVeil { position:absolute; inset:0; background:#0a0603; opacity:0; transition:opacity .35s ease; z-index:60; pointer-events:none; }
+  #underCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:12; touch-action:none; }
+  #underBar { position:absolute; top:118px; right:10px; left:10px; display:flex; gap:8px; align-items:center; z-index:25; direction:rtl; }
+  #underBackBtn { padding:9px 16px; border-radius:12px; border:2px solid rgba(255,255,255,.7); background:rgba(43,74,28,.92); color:#fff; font-size:15px; font-weight:800; cursor:pointer; }
+  #underHint { flex:1; text-align:center; background:rgba(20,30,15,.72); color:#ffd93d; padding:8px 10px; border-radius:12px; font-size:13px; font-weight:700; border:1px solid rgba(255,255,255,.25); }
+  #roomPanel, #buildMenu, #beastPanel, #genePanel, #trainPanel, #worldPanel { position:absolute; bottom:12px; right:10px; left:10px; z-index:30; background:#fffdf4; border-radius:16px; padding:14px; direction:rtl; box-shadow:0 12px 40px rgba(0,0,0,.45); max-height:46%; overflow-y:auto; }
+  #roomTitle, #buildTitle, #beastTitle, #geneTitle, #trainTitle, #worldTitle { font-weight:900; font-size:16px; margin-bottom:6px; }
+  .mdot { position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#ff3b3b; color:#fff; font-size:11px; display:flex; align-items:center; justify-content:center; }
+  #worldTabs { display:flex; gap:6px; margin-bottom:8px; }
+  #worldTabs button { flex:1; padding:8px 4px; border-radius:10px; border:2px solid #d9c08a; background:#fff; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit; }
+  #worldTabs button.sel { background:#2f6b22; color:#fff; border-color:#2f6b22; }
+  #geneTabs { display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
+  #geneTabs button { flex:1 1 28%; padding:8px 4px; border-radius:10px; border:2px solid #9ad0c2; background:#fff; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit; white-space:nowrap; }
+  #geneTabs button.sel { background:#0e6e5c; color:#fff; border-color:#0e6e5c; }
+  #trainTabs { display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
+  #trainTabs button { flex:1 1 22%; padding:8px 4px; border-radius:10px; border:2px solid #c9a227; background:#fff; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit; white-space:nowrap; }
+  #trainTabs button.sel { background:#7a5b00; color:#fff; border-color:#7a5b00; }
+  #worldBody { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; max-height:30vh; overflow-y:auto; }
+  .wsec { font-size:13px; font-weight:800; color:#4a3a22; background:#f2e8d0; border-radius:10px; padding:7px 10px; }
+  .qbar { height:7px; background:#e0d4b8; border-radius:4px; overflow:hidden; margin-top:4px; }
+  .qbar > div { height:100%; background:linear-gradient(90deg,#37d67a,#b8f36b); border-radius:4px; }
+  #beastCount { font-size:13px; color:#7a6a4a; margin-bottom:8px; font-weight:700; }
+  #geneSub { font-size:13px; color:#0e6e5c; margin-bottom:8px; font-weight:700; }
+  #trainSub { font-size:13px; color:#7a5b00; margin-bottom:8px; font-weight:700; }
+  #beastList { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; max-height:30vh; overflow-y:auto; }
+  #geneBody { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; max-height:30vh; overflow-y:auto; }
+  #trainBody { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; max-height:30vh; overflow-y:auto; }
+  .beastCard { display:flex; gap:10px; align-items:center; background:#fff; border:2px solid #d9c08a; border-radius:12px; padding:8px 10px; }
+  .beastCard.deployed { border-color:#2f6b22; background:#f2f9ec; }
+  .beastCard.dead { border-color:#8a2a2a; background:#f7e8e8; }
+  .beastIco { font-size:30px; line-height:1; }
+  .beastInfo { flex:1; text-align:right; min-width:0; }
+  .beastName { font-weight:900; font-size:14px; display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+  .beastRar { font-size:11px; font-weight:800; padding:1px 8px; border-radius:8px; color:#fff; }
+  .beastStats { font-size:12px; color:#4a3a22; margin-top:2px; }
+  .beastBtns { display:flex; gap:6px; margin-top:6px; }
+  .beastBtns button { flex:1; padding:7px 4px; border-radius:10px; border:none; font-size:12px; font-weight:800; cursor:pointer; font-family:inherit; white-space:nowrap; }
+  .beastUp { background:#2f6b22; color:#fff; }
+  .beastUp:disabled { opacity:.45; }
+  .beastGo { background:#b8860b; color:#fff; }
+  #roomDesc { font-size:14px; line-height:1.8; margin-bottom:10px; color:#4a3a22; }
+  #roomUpgradeBtn, #buildCancelBtn { width:100%; padding:11px; border:none; border-radius:12px; font-size:15px; font-weight:800; cursor:pointer; margin-top:6px; }
+  #roomUpgradeBtn { background:#2f6b22; color:#fff; }
+  #roomUpgradeBtn:disabled { opacity:.45; filter:grayscale(.5); }
+  #casteRow { display:flex; gap:6px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+  #casteRow .casteLbl { font-size:13px; font-weight:800; color:#4a3a22; }
+  #casteRow button { flex:1; padding:8px 4px; border-radius:10px; border:2px solid #d9c08a; background:#fff; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit; }
+  #casteRow button.sel { background:#2f6b22; color:#fff; border-color:#2f6b22; }
+  #queenMoveBtn { width:100%; padding:10px; border:2px solid #d9c08a; border-radius:12px; background:#fff; color:#4a3a22; font-size:14px; font-weight:800; cursor:pointer; margin-top:6px; font-family:inherit; }
+  #archerBtn, #sackBtn, #fertBtn { width:100%; padding:10px; border:2px solid #e8a33d; border-radius:12px; background:linear-gradient(145deg,#fff3d6,#ffd98a); color:#5a2e00; font-size:14px; font-weight:800; cursor:pointer; margin-top:6px; font-family:inherit; }
+  #queenMoveBtn:disabled { opacity:.55; filter:grayscale(.4); }
+  #buildCancelBtn, #roomCloseBtn, #beastCloseBtn, #geneCloseBtn, #trainCloseBtn, #worldCloseBtn { background:#e8e0d0; color:#4a3a22; }
+  #roomCloseBtn, #beastCloseBtn, #geneCloseBtn, #trainCloseBtn, #worldCloseBtn { width:100%; padding:9px; border:none; border-radius:12px; font-size:14px; font-weight:800; cursor:pointer; margin-top:6px; }
+  #buildList { display:flex; flex-direction:column; gap:6px; margin-bottom:6px; }
+  .buildOpt { display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:12px; border:2px solid #d9c08a; background:#fff; cursor:pointer; text-align:right; font-family:inherit; }
+  .buildOpt:disabled { opacity:.45; filter:grayscale(.6); cursor:default; }
+  .boIcon { font-size:24px; }
+  .boTxt { flex:1; display:flex; flex-direction:column; }
+  .boTxt small { color:#7a6a4a; font-size:12px; }
+  .boCost { font-weight:900; color:#2f6b22; white-space:nowrap; }
+  .toast { background:rgba(20,30,15,.85); color:#fff; padding:8px 14px; border-radius:20px; font-size:14px; font-weight:700; animation:tin .25s ease-out; border:1px solid rgba(255,255,255,.3); }
+  @keyframes tin { from { transform:translateY(-8px); opacity:0; } }
+  /* ===== شريط التعليم التدريجي + لوحة النهاية (فوز/خسارة) ===== */
+  #tutBar { position:absolute; bottom:calc(172px + env(safe-area-inset-bottom)); right:10px; left:10px; z-index:28; display:flex; gap:8px; align-items:center; direction:rtl; background:rgba(12,29,21,.95); border:1px solid rgba(232,189,98,.75); border-radius:14px; padding:9px 12px; box-shadow:0 8px 24px rgba(0,0,0,.4); }
+  #tutBar[hidden] { display:none; }
+  #tutTxt { flex:1; color:#ffe2a0; font-size:13px; font-weight:800; line-height:1.6; }
+  #tutProg { flex:none; color:#1d2418; background:linear-gradient(145deg,#f0ce7c,#c18b39); border-radius:10px; padding:5px 9px; font-size:11px; font-weight:900; white-space:nowrap; }
+  #tutSkipBtn { flex:none; padding:7px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.1); color:#e8eee4; font-size:11px; font-weight:800; cursor:pointer; font-family:inherit; white-space:nowrap; }
+  #endPanel { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:56; padding:20px; background:rgba(8,14,6,.78); backdrop-filter:blur(4px); animation:pop .25s ease-out; }
+  #endPanel[hidden] { display:none; }
+  #endCard { background:linear-gradient(155deg,rgba(37,78,51,.99),rgba(12,31,23,.99)); border:1px solid rgba(232,189,98,.75); border-radius:26px; padding:26px 22px 20px; width:100%; max-width:360px; text-align:center; direction:rtl; box-shadow:0 24px 70px rgba(0,0,0,.6); color:#f5f3e8; }
+  #endIcon { font-size:56px; line-height:1; margin-bottom:8px; animation:bob 1.6s ease-in-out infinite; }
+  #endCard h3 { margin:0 0 8px; color:#ffe1a0; font-size:24px; font-weight:950; }
+  #endDesc { color:#d1dfcd; font-size:14px; line-height:1.8; margin:0 0 10px; font-weight:700; }
+  #endStats { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-bottom:12px; }
+  #endStats span { background:rgba(255,255,255,.08); border:1px solid rgba(232,189,98,.3); border-radius:10px; padding:6px 10px; font-size:12px; font-weight:800; color:#f0d28e; }
+  #endCard button { width:100%; padding:12px; margin-top:8px; border:none; border-radius:14px; font-size:16px; font-weight:800; cursor:pointer; font-family:inherit; min-height:48px; }
+  #endPrimaryBtn { color:#14291c; background:linear-gradient(145deg,#f0ce7c,#c18b39); border:1px solid #f8dfa2 !important; font-weight:950; }
+  #endSecondaryBtn { color:#edf3e9 !important; background:rgba(255,255,255,.075) !important; border:1px solid rgba(255,255,255,.16) !important; }
+  /* زر الضبط مثبّت بالشاشة دائماً (لا يتحرك ولا يُخفى) */
+#gearBtn { position:absolute; top:calc(10px + env(safe-area-inset-top)); right:10px; width:46px; height:46px; border-radius:50%; background:rgba(18,38,22,.94); border:2px solid rgba(255,255,255,.4); color:#fff; font-size:22px; cursor:pointer; z-index:30; display:flex; align-items:center; justify-content:center; padding:0; font-family:inherit; box-shadow:0 6px 16px rgba(0,0,0,.4); }
+#gearBtn:active { transform:scale(.93); }
+#joyBase { position:absolute; width:150px; height:150px; border-radius:50%; background:rgba(255,255,255,.18); border:2px solid rgba(255,255,255,.55); z-index:25; pointer-events:none; transform:translate(-50%,-50%); }
+#joyKnob { position:absolute; left:50%; top:50%; width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.85); border:2px solid #2f6b22; transform:translate(-50%,-50%); box-shadow:0 3px 10px rgba(0,0,0,.3); }
+#selRect { position:fixed; border:2px dashed #ffd93d; background:rgba(255,217,61,.13); z-index:40; pointer-events:none; border-radius:6px; }
+  #damageFlash { position:absolute; inset:0; background:radial-gradient(ellipse at center, transparent 55%, rgba(255,0,0,.45) 100%); z-index:22; pointer-events:none; }
+  #centerMsg { position:absolute; top:32%; right:0; left:0; text-align:center; z-index:46; pointer-events:none; font-size:22px; font-weight:900; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.6); }
+  @media (max-width:640px) {
+    #mapWrap { width:96px; height:96px; top:96px; }
+    #helpBtn { top:200px; }
+    .bars { min-width:120px; }
+    #actionCtn { width:170px; }
+  }
+  #resBar { position:absolute; left:10px; bottom:calc(12px + env(safe-area-inset-bottom)); max-width:54vw; display:flex; gap:6px; overflow-x:auto; z-index:20; pointer-events:none; direction:rtl; scrollbar-width:none; }
+  #resBar::-webkit-scrollbar { display:none; }
+  #resBar[hidden] { display:none; }
+  #resBar span { background:rgba(20,30,15,.72); color:#fff; border:1px solid rgba(255,255,255,.25); padding:5px 9px; border-radius:11px; font-size:12px; font-weight:700; white-space:nowrap; flex:none; }
+  #resBar b { margin-right:4px; color:#ffd93d; }
+  #pauseBtn { position:absolute; top:calc(10px + env(safe-area-inset-top)); left:10px; width:40px; height:40px; border-radius:50%; border:2px solid rgba(255,255,255,.7); background:rgba(20,30,15,.72); color:#fff; font-size:18px; font-weight:900; z-index:20; cursor:pointer; }
+  #pauseBtn[hidden] { display:none; }
+  #startScreen, #pausePanel, #settingsPanel, #aboutPanel, #privacyPanel { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:55; padding:20px; background:rgba(8,14,6,.72); backdrop-filter:blur(3px); }
+  #settingsPanel { z-index:57; }
+  #aboutPanel { z-index:59; }
+  #helpModal { z-index:58; }
+  #startScreen[hidden], #pausePanel[hidden], #settingsPanel[hidden], #aboutPanel[hidden] { display:none; }
+  #startCard, #pauseCard, #setCard, #aboutCard { background:linear-gradient(180deg,#fffdf4,#f5ecd6); border-radius:22px; padding:24px 20px; width:100%; max-width:340px; text-align:center; direction:rtl; box-shadow:0 16px 50px rgba(0,0,0,.5); border:3px solid #d9c08a; animation:pop .25s ease-out; }
+  #startCard h2, #pauseCard h3, #setCard h3, #aboutCard h3 { margin:0 0 8px; color:#2f4a1e; }
+  #aboutTxt { font-size:14px; line-height:1.9; color:#3c5527; margin:6px 0; }
+  #aboutDesigner { font-size:15px; color:#2f4a1e; margin:10px 0 4px; }
+  #waBtn { display:block; box-sizing:border-box; width:100%; padding:12px; margin-top:8px; border-radius:14px; font-size:16px; font-weight:800; font-family:inherit; min-height:48px; line-height:24px; text-decoration:none; background:#1faa53; color:#fff; }
+  #waBtn:active { transform:scale(.96); }
+  #startAnt { font-size:52px; animation:bob 1.6s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+  #startSub { color:#7a6a4a; font-size:14px; font-weight:700; margin:0 0 6px; }
+  #startSaveInfo { color:#2f6b22; font-size:13px; font-weight:800; margin:0 0 10px; min-height:18px; }
+  #startCard button, #pauseCard button, #setCard button, #setCard select, #aboutCard button { width:100%; padding:12px; margin-top:8px; border:none; border-radius:14px; font-size:16px; font-weight:800; cursor:pointer; font-family:inherit; min-height:48px; transition:transform .08s; }
+  #startCard button:active, #pauseCard button:active, #setCard button:active, #aboutCard button:active { transform:scale(.96); }
+  #startPlayBtn, #resumeBtn, #settingsCloseBtn, #aboutCloseBtn { background:#2f6b22; color:#fff; }
+  .ghost { background:#fff !important; color:#4a3a22 !important; border:2px solid #d9c08a !important; }
+  .danger { color:#b03030 !important; border-color:#e0a0a0 !important; }
+  #roomPanel, #buildMenu, #beastPanel, #genePanel, #trainPanel, #worldPanel, #actionCtn { animation:pop .22s ease-out; }
+  @keyframes pop { from { transform:translateY(10px) scale(.98); opacity:0; } }
+  #actionCtn { bottom:calc(62px + env(safe-area-inset-bottom)); max-height:60vh; overflow-y:auto; }
+  #actionCtn button { min-height:44px; }
+ #menuBtn { bottom:calc(12px + env(safe-area-inset-bottom)); }
+  #nestHud { position:absolute; top:calc(8px + env(safe-area-inset-top)); right:8px; left:8px; display:flex; gap:6px; align-items:center; z-index:26; direction:rtl; }
+  #nestHud[hidden] { display:none; }
+  #nestLv { display:flex; align-items:center; gap:6px; background:rgba(20,16,8,.88); border:2px solid #c9a227; border-radius:14px; padding:6px 10px; color:#fff; font-weight:900; font-size:13px; min-width:118px; }
+  #nestAntIco { font-size:22px; }
+  #nestXpBar { width:64px; height:8px; background:#3a2c14; border-radius:5px; overflow:hidden; border:1px solid #c9a227; }
+  #nestXpFill { height:100%; width:30%; background:linear-gradient(90deg,#37d67a,#b8f36b); border-radius:5px; }
+  #nestRes { flex:1; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; }
+  #nestRes::-webkit-scrollbar { display:none; }
+  .nres { flex:none; display:flex; align-items:center; gap:4px; background:rgba(20,16,8,.88); border:2px solid rgba(255,255,255,.35); border-radius:12px; padding:5px 6px; color:#fff; font-size:12px; font-weight:900; }
+  .nres b { color:#ffd93d; }
+  .nres .plus { width:20px; height:20px; border-radius:50%; border:none; background:#37d67a; color:#fff; font-size:14px; font-weight:900; cursor:pointer; line-height:1; }
+  #nestSetBtn { width:44px; height:44px; flex:none; border-radius:12px; border:2px solid rgba(255,255,255,.5); background:rgba(20,16,8,.88); color:#fff; font-size:22px; cursor:pointer; }
+  #nestExitBtn { width:64px; height:52px; flex:none; border-radius:14px; border:2px solid #c9a227; background:rgba(20,16,8,.9); color:#fff; font-size:22px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  #nestExitBtn small { font-size:11px; font-weight:800; }
+  #nestExitBtn:active { transform:scale(.94); }
+  #nestQuestBtn { position:absolute; top:96px; left:8px; z-index:26; width:58px; height:72px; border-radius:12px; border:2px solid #c9a227; background:rgba(20,16,8,.88); color:#fff; font-size:24px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; }
+  #nestQuestBtn[hidden] { display:none; }
+  #nestQuestBtn small { font-size:11px; font-weight:800; }
+  #nestQuestDot { position:absolute; top:-7px; right:-4px; width:20px; height:20px; border-radius:50%; background:#ff3b3b; color:#fff; font-size:13px; font-weight:900; display:flex; align-items:center; justify-content:center; border:2px solid #fff; }
+  #nestSide { position:absolute; top:178px; right:8px; z-index:26; display:flex; flex-direction:column; gap:8px; }
+  #nestSide[hidden] { display:none; }
+  #nestSide button { width:62px; height:62px; border-radius:14px; border:2px solid #c9a227; background:rgba(20,16,8,.9); color:#fff; font-size:24px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  #nestSide button small { font-size:11px; font-weight:800; }
+  #nestSide button:active { transform:scale(.94); }
+  #nestBottom { position:absolute; bottom:calc(10px + env(safe-area-inset-bottom)); right:0; left:0; z-index:26; display:flex; gap:8px; justify-content:center; direction:rtl; pointer-events:none; }
+  #nestBottom[hidden] { display:none; }
+  #nestBottom button { pointer-events:auto; width:74px; height:66px; border-radius:16px; border:2px solid #c9a227; background:rgba(20,16,8,.92); color:#fff; font-size:26px; font-weight:900; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  #nestBottom button small { font-size:12px; font-weight:800; }
+  #nestBottom button:active { transform:scale(.94); }
+  #nestBackFab { position:absolute; bottom:calc(78px + env(safe-area-inset-bottom)); left:8px; z-index:26; width:74px; height:90px; border-radius:50% 50% 46% 46%; border:3px solid #c9a227; background:radial-gradient(circle at 50% 30%, #6b4a26, #3a2311); color:#fff; font-size:22px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,.5); }
+  #nestBackFab[hidden] { display:none; }
+  #nestBackFab small { font-size:10px; font-weight:800; line-height:1.3; }
+  #nestZoom { position:absolute; left:8px; bottom:calc(180px + env(safe-area-inset-bottom)); z-index:26; display:flex; flex-direction:column; gap:8px; }
+  #nestZoom[hidden] { display:none; }
+  #nestZoom button { width:44px; height:44px; border-radius:50%; border:2px solid #c9a227; background:rgba(20,16,8,.9); color:#fff; font-size:19px; font-weight:900; cursor:pointer; padding:0; }
+  #nestZoom button:active { transform:scale(.93); }
+  #nestBackArr { background:#37d67a; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-size:15px; border:2px solid #fff; margin-bottom:2px; }
+  @media (max-height:500px) {
+    #nestHud { transform:scale(.85); transform-origin:top right; }
+    #nestSide button { width:50px; height:52px; font-size:19px; }
+    #nestSide { top:150px; gap:6px; }
+    #nestBottom button { width:60px; height:54px; font-size:20px; }
+    #nestBackFab { width:64px; height:78px; font-size:17px; bottom:calc(80px + env(safe-area-inset-bottom)); }
+    #nestQuestBtn { width:48px; height:60px; font-size:19px; top:84px; }
+  }
+
+/* ===== PROFESSIONAL UI PASS — visual-only overrides; gameplay logic untouched ===== */
+:root {
+  --ui-ink: #f5f3e8;
+  --ui-muted: #bdc9b7;
+  --ui-panel: rgba(12, 29, 22, .94);
+  --ui-panel-2: rgba(22, 47, 34, .96);
+  --ui-line: rgba(221, 190, 112, .42);
+  --ui-gold: #e8bd62;
+  --ui-green: #4f9b60;
+  --ui-green-deep: #24623e;
+  --ui-red: #d66c62;
+  --ui-shadow: 0 14px 38px rgba(0,0,0,.38);
+}
+#gameRoot { isolation:isolate; }
+button { font-family:inherit; -webkit-tap-highlight-color:transparent; }
+button:focus-visible { outline:3px solid var(--ui-gold); outline-offset:2px; }
+#loadingEl {
+  background: radial-gradient(ellipse at 50% 38%, rgba(116,157,83,.92), transparent 42%),
+              linear-gradient(155deg,#132d23 0%,#234b32 52%,#101f1a 100%);
+  letter-spacing:.2px; font-weight:800;
+}
+#loadingEl .spin { border-width:4px; border-color:rgba(255,255,255,.18); border-top-color:var(--ui-gold); }
+#topBar { top:calc(9px + env(safe-area-inset-top)); gap:7px; }
+.stat, .barRow, #typeBar span, #resBar span {
+  background:rgba(10,25,19,.78); border:1px solid rgba(231,205,145,.24);
+  box-shadow:0 4px 14px rgba(0,0,0,.16); backdrop-filter:blur(12px);
+}
+.stat { border-radius:13px; padding:7px 10px; font-variant-numeric:tabular-nums; }
+.stat .ico { filter:drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
+.barRow { border-radius:10px; }
+.bar { background:rgba(255,255,255,.16); }
+#minimapCtn { border:2px solid rgba(232,189,98,.8); box-shadow:var(--ui-shadow); }
+#menuBtn, #pauseBtn, #zoomCtn button {
+  background:linear-gradient(145deg,rgba(30,75,49,.96),rgba(10,32,24,.96));
+  border:1px solid rgba(232,189,98,.72); box-shadow:0 6px 18px rgba(0,0,0,.28);
+  transition:transform .14s ease, filter .14s ease, box-shadow .14s ease;
+}
+#menuBtn { width:48px; height:48px; }
+#pauseBtn { width:44px; height:44px; }
+#menuBtn:active, #pauseBtn:active, #zoomCtn button:active { transform:scale(.94); filter:brightness(1.16); }
+#actionCtn { gap:7px; }
+#actionCtn button, #underBackBtn, #cmdBar button {
+  border:1px solid rgba(232,189,98,.55);
+  background:linear-gradient(145deg,#2d7549,#17452f);
+  box-shadow:0 4px 12px rgba(0,0,0,.22);
+  border-radius:13px; min-height:46px; font-size:13px; letter-spacing:.05px;
+  transition:transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+#actionCtn button.mini { font-size:12px; }
+#actionCtn button:not(:disabled):active, #cmdBar button:active, #underBackBtn:active {
+  transform:translateY(1px) scale(.98); filter:brightness(1.16);
+}
+#actionCtn button:disabled { background:#47554b; }
+#cmdBar { gap:6px; }
+#cmdBar button { background:linear-gradient(145deg,#80513a,#583323); min-height:40px; }
+#cmdBar button:active, #cmdBar button:focus-visible { background:linear-gradient(145deg,#d6a747,#98651d); color:#1d2418; }
+#selCount { background:rgba(12,29,22,.94); border:1px solid var(--ui-gold); color:#ffe2a0; }
+#underHint { background:rgba(10,25,19,.84); border:1px solid var(--ui-line); backdrop-filter:blur(10px); }
+#toastCtn { top:calc(8px + env(safe-area-inset-top)); padding:0 12px; }
+.toast {
+  background:rgba(10,29,21,.96); border:1px solid rgba(232,189,98,.62);
+  border-radius:13px; box-shadow:0 8px 24px rgba(0,0,0,.3); padding:10px 16px;
+}
+#roomPanel, #buildMenu, #beastPanel, #genePanel, #trainPanel, #worldPanel {
+  color:var(--ui-ink); background:linear-gradient(160deg,rgba(27,57,40,.98),rgba(10,27,21,.98));
+  border:1px solid rgba(232,189,98,.55); border-radius:20px; padding:16px;
+  box-shadow:0 18px 48px rgba(0,0,0,.48); backdrop-filter:blur(14px);
+  max-height:min(62vh,620px); padding-bottom:calc(14px + env(safe-area-inset-bottom));
+}
+#roomTitle, #buildTitle, #beastTitle, #geneTitle, #trainTitle, #worldTitle {
+  color:#ffe1a0; font-size:17px; padding-bottom:9px; margin-bottom:10px;
+  border-bottom:1px solid rgba(232,189,98,.24); letter-spacing:.1px;
+}
+#roomDesc, #beastCount, #geneSub, #trainSub { color:#d3dfd0; line-height:1.65; }
+  #diffRow { margin:10px 0 2px; }
+  #diffLabel { font-weight:800; color:#2f4a1e; margin-bottom:6px; }
+  #diffBtns { display:flex; gap:6px; }
+  #diffBtns button { flex:1; padding:8px 4px !important; margin-top:0 !important; min-height:44px !important; font-size:14px !important; background:#efe6cf; color:#5a4a22; border:2px solid #d9c08a !important; }
+  #diffBtns button.sel { background:#2f6b22; color:#fff; border-color:#2f6b22 !important; }
+  #diffDesc { font-size:12px; color:#7a6420; margin-top:6px; min-height:16px; }
+#worldTabs button, #geneTabs button, #trainTabs button, #casteRow button {
+  background:rgba(245,248,238,.08); color:#e9f0e4; border:1px solid rgba(232,189,98,.35);
+  border-radius:11px; min-height:40px; transition:background .14s ease, transform .14s ease;
+}
+#worldTabs button.sel, #geneTabs button.sel, #trainTabs button.sel, #casteRow button.sel {
+  background:linear-gradient(145deg,#4e9860,#24623e); color:white; border-color:#e8bd62;
+  box-shadow:inset 0 1px rgba(255,255,255,.16),0 4px 12px rgba(0,0,0,.18);
+}
+.wsec { color:#f2e6c9; background:rgba(255,255,255,.08); border:1px solid rgba(232,189,98,.2); }
+.qbar { background:rgba(255,255,255,.16); }
+.beastCard, .buildOpt {
+  color:var(--ui-ink); background:rgba(255,255,255,.065);
+  border:1px solid rgba(232,189,98,.28); border-radius:14px;
+}
+.beastCard.deployed { background:rgba(65,139,81,.2); border-color:#79bd83; }
+.beastStats, .boTxt small { color:#c6d4c2; }
+.boCost { color:#f3d28b; }
+.beastUp, #roomUpgradeBtn, #buildCancelBtn, #helpCloseBtn {
+  background:linear-gradient(145deg,#55a76a,#286a43); color:#fff;
+  border:1px solid rgba(232,189,98,.55);
+}
+.beastGo { background:linear-gradient(145deg,#d4a84f,#93651f); color:#17251a; }
+#roomUpgradeBtn, #buildCancelBtn, #roomCloseBtn, #beastCloseBtn, #geneCloseBtn, #trainCloseBtn, #worldCloseBtn {
+  min-height:44px; border-radius:13px; font-size:14px; font-weight:850;
+}
+#buildCancelBtn, #roomCloseBtn, #beastCloseBtn, #geneCloseBtn, #trainCloseBtn, #worldCloseBtn {
+  color:#e8eee4; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.15);
+}
+#queenMoveBtn { color:#f3e6c9; background:rgba(255,255,255,.07); border:1px solid var(--ui-line); }
+#archerBtn, #sackBtn, #fertBtn { color:#1d2418; background:linear-gradient(145deg,#e8b45a,#9a6a1d); border:1px solid #f8dfa2; width:100%; padding:10px; border-radius:12px; font-size:14px; font-weight:800; cursor:pointer; margin-top:6px; font-family:inherit; }
+#helpModal { background:rgba(3,12,8,.78); backdrop-filter:blur(8px); }
+#helpCard {
+  color:var(--ui-ink); background:linear-gradient(160deg,#244b35,#10271e);
+  border:1px solid var(--ui-line); border-radius:20px; box-shadow:var(--ui-shadow);
+}
+#helpCard h3 { color:#ffe1a0; }
+#helpCard ul { color:#e1eadc; }
+#startScreen, #pausePanel, #settingsPanel {
+  background:radial-gradient(ellipse at 50% 34%,rgba(81,130,73,.3),transparent 45%),
+             linear-gradient(145deg,rgba(4,16,12,.9),rgba(9,27,19,.94));
+  backdrop-filter:blur(10px);
+}
+#startCard, #pauseCard, #setCard {
+  position:relative; overflow:hidden; isolation:isolate;
+  color:#f5f3e8; text-align:center;
+  background:linear-gradient(155deg,rgba(37,78,51,.98),rgba(12,31,23,.99) 68%);
+  border:1px solid rgba(232,189,98,.72); border-radius:26px;
+  padding:28px 22px 22px; max-width:360px;
+  box-shadow:0 24px 70px rgba(0,0,0,.58), inset 0 1px rgba(255,255,255,.12);
+}
+#startCard::before, #pauseCard::before, #setCard::before {
+  content:""; position:absolute; z-index:-1; width:240px; height:240px; border-radius:50%;
+  top:-145px; right:-95px; border:1px solid rgba(232,189,98,.22);
+  box-shadow:0 0 0 18px rgba(232,189,98,.035),0 0 0 38px rgba(232,189,98,.025);
+}
+#startAnt {
+  width:92px; height:92px; display:grid; place-items:center; margin:0 auto 12px;
+  border-radius:28px; font-size:54px;
+  background:linear-gradient(145deg,rgba(232,189,98,.2),rgba(255,255,255,.04));
+  border:1px solid rgba(232,189,98,.5); box-shadow:inset 0 1px rgba(255,255,255,.16),0 10px 24px rgba(0,0,0,.2);
+}
+#startCard h2, #pauseCard h3, #setCard h3 { color:#ffe1a0; font-size:24px; font-weight:950; margin:0 0 10px; }
+#startSub { color:#d1dfcd; font-size:13px; line-height:1.7; margin-bottom:10px; }
+#startSaveInfo { color:#f0d28e; background:rgba(232,189,98,.1); border:1px solid rgba(232,189,98,.2); border-radius:10px; padding:7px; }
+#startCard button, #pauseCard button, #setCard button {
+  min-height:48px; border-radius:14px; margin-top:9px; font-size:15px;
+  border:1px solid rgba(232,189,98,.48);
+  box-shadow:0 5px 14px rgba(0,0,0,.2); transition:transform .13s ease,filter .13s ease;
+}
+#startPlayBtn, #resumeBtn, #settingsCloseBtn {
+  color:#14291c; background:linear-gradient(145deg,#f0ce7c,#c18b39);
+  border-color:#f8dfa2; font-weight:950;
+}
+#startHelpBtn, #settingsBtn, #saveNowBtn, #homeBtn, #setSoundBtn, #setQualityBtn, #setVibrateBtn, #setHelpBtn {
+  color:#edf3e9 !important; background:rgba(255,255,255,.075) !important;
+  border:1px solid rgba(255,255,255,.16) !important;
+}
+#startWipeBtn, #setWipeBtn { color:#ffd0c9 !important; background:rgba(180,65,55,.13) !important; border:1px solid rgba(214,108,98,.45) !important; }
+#startCard button:active, #pauseCard button:active, #setCard button:active { transform:scale(.98); filter:brightness(1.12); }
+#resBar span { padding:6px 9px; border-radius:12px; }
+#resBar b { color:#f5d58f; }
+#nestHud { gap:8px; }
+#nestLv, #nestRes {
+  background:rgba(10,25,19,.84); border:1px solid rgba(232,189,98,.32);
+  box-shadow:0 5px 16px rgba(0,0,0,.2); backdrop-filter:blur(12px); border-radius:14px;
+}
+#nestSetBtn, #nestQuestBtn, #nestSide button, #nestBottom button, #nestBackFab {
+  border:1px solid rgba(232,189,98,.55); box-shadow:0 6px 18px rgba(0,0,0,.25);
+  background:linear-gradient(145deg,rgba(39,91,58,.97),rgba(12,35,25,.97));
+  color:#fff; border-radius:14px;
+}
+#nestSide button, #nestBottom button { transition:transform .12s ease,filter .12s ease; }
+#nestSide button:active, #nestBottom button:active, #nestBackFab:active { transform:scale(.95); }
+#nestBackFab { border-radius:18px; }
+#fadeVeil { backdrop-filter:blur(2px); }
+@media (max-width:640px) {
+  #topBar { gap:5px; right:7px; left:7px; }
+  .stat { padding:6px 8px; font-size:12px; }
+  .bars { min-width:108px; }
+  .bar { min-width:65px; }
+  #actionCtn { width:min(164px,43vw); right:8px; bottom:calc(66px + env(safe-area-inset-bottom)); gap:6px; }
+  #actionCtn button { min-height:42px; padding:8px 6px; font-size:12px; }
+  #roomPanel, #buildMenu, #beastPanel, #genePanel, #trainPanel, #worldPanel {
+    right:7px; left:7px; bottom:calc(7px + env(safe-area-inset-bottom));
+    max-height:68vh; border-radius:18px; padding:13px;
+  }
+  #startCard, #pauseCard, #setCard { max-width:340px; padding:24px 18px 18px; }
+  #resBar { max-width:58vw; }
+}
+@media (max-height:560px) {
+  #roomPanel, #buildMenu, #beastPanel, #genePanel, #trainPanel, #worldPanel { max-height:72vh; }
+  #startCard, #pauseCard, #setCard { padding:16px; max-height:90vh; overflow:auto; }
+  #startAnt { width:66px; height:66px; font-size:42px; margin-bottom:6px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #startAnt, #startCard, #pauseCard, #setCard, #actionCtn, #roomPanel, #buildMenu,
+  #beastPanel, #genePanel, #trainPanel, #worldPanel { animation:none !important; }
+  * { scroll-behavior:auto !important; transition-duration:.01ms !important; }
+}
+/* ===== END PROFESSIONAL UI PASS ===== */
+
+
+/* ===== STABILITY + ACCESSIBILITY PASS ===== */
+[hidden] { display:none !important; }
+#menuBtn { appearance:none; -webkit-appearance:none; padding:0; font-family:inherit; cursor:pointer; }
+#menuBtn:focus-visible, #pauseBtn:focus-visible, #helpBtn:focus-visible,
+#nestSetBtn:focus-visible, #nestQuestBtn:focus-visible,
+#nestSide button:focus-visible, #nestBottom button:focus-visible,
+#nestBackFab:focus-visible { outline:3px solid #ffe1a0; outline-offset:3px; }
+#helpModal, #startScreen, #pausePanel, #settingsPanel { padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom)); }
+#helpCard { max-height: min(84vh, 760px); overflow-y:auto; overscroll-behavior:contain; }
+#helpCard ul { padding-right:22px; }
+#roomPanel, #buildMenu, #beastPanel, #genePanel, #trainPanel, #worldPanel,
+#helpCard { overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+button { touch-action:manipulation; }
+@media (max-width:380px) {
+  #topBar { gap:4px; }
+  .stat { padding:5px 7px; font-size:11px; }
+  .bars { min-width:94px; }
+  .bar { min-width:54px; }
+  #actionCtn { width:min(150px,42vw); }
+  #actionCtn button { white-space:normal; line-height:1.25; }
+  #nestBottom { gap:5px; }
+  #nestBottom button { width:clamp(52px,17vw,64px); }
+}
+/* ===== END STABILITY + ACCESSIBILITY PASS ===== */
+
+
+/* ===== STARTUP RECOVERY / PLAYER-FACING ERROR STATE ===== */
+#loadingEl .bootErrorCard {
+  width:min(390px, calc(100vw - 36px));
+  box-sizing:border-box; padding:24px 20px; text-align:center; direction:rtl;
+  color:#f5f3e8; background:linear-gradient(155deg,rgba(37,78,51,.99),rgba(12,31,23,.99));
+  border:1px solid rgba(232,189,98,.72); border-radius:22px;
+  box-shadow:0 24px 70px rgba(0,0,0,.58),inset 0 1px rgba(255,255,255,.12);
+}
+#loadingEl .bootErrorIcon {
+  width:58px; height:58px; display:grid; place-items:center; margin:0 auto 12px;
+  border-radius:18px; font-size:30px; color:#ffe1a0;
+  background:rgba(214,108,98,.14); border:1px solid rgba(214,108,98,.5);
+}
+#loadingEl .bootErrorCard h2 { color:#ffe1a0; font-size:20px; margin:0 0 10px; }
+#loadingEl .bootErrorCard p { color:#d7e2d2; font-size:14px; line-height:1.7; margin:0 0 14px; }
+#loadingEl .bootErrorCard button {
+  width:100%; min-height:48px; border-radius:13px; border:1px solid #f8dfa2;
+  color:#14291c; background:linear-gradient(145deg,#f0ce7c,#c18b39);
+  font:900 15px inherit; cursor:pointer;
+}
+#loadingEl .bootErrorCard button:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+#loadingEl .bootErrorCard small { display:block; margin-top:10px; color:#aebdad; font-size:11px; line-height:1.5; }
+@media (max-width:380px) {
+  #loadingEl .bootErrorCard { padding:19px 15px; }
+  #loadingEl .bootErrorCard h2 { font-size:18px; }
+}
+/* ===== END STARTUP RECOVERY ===== */
+
+/* ===== تخصيص الواجهة: أماكن القوائم والإشعارات والخريطة ===== */
+#mapStack { position:absolute; top:206px; left:10px; z-index:20; display:flex; flex-direction:column; gap:8px; }
+#mapStack[hidden] { display:none; }
+#gameRoot.mapRight #mapStack { left:auto; right:10px; }
+#mapStack button { width:52px; height:56px; border-radius:14px; border:2px solid rgba(255,255,255,.7); background:rgba(20,30,15,.85); color:#fff; font-size:22px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0; }
+#mapStack button small { font-size:10px; font-weight:800; }
+#mapStack button:active { transform:scale(.93); }
+#armyBtn.on { border-color:#ffd93d; background:linear-gradient(145deg,#d6a747,#98651d); color:#1d2418; }
+#gameRoot.cmdLeft #cmdBar { right:52%; left:10px; }
+#gameRoot.menuLeft #menuBtn { right:auto; left:10px; }
+#gameRoot.menuLeft #actionCtn { right:auto; left:10px; }
+#gameRoot.menuLeft #zoomCtn { left:auto; right:10px; }
+#gameRoot.toastsMid #toastCtn { top:40%; }
+#gameRoot.toastsBot #toastCtn { top:auto; bottom:130px; }
+#gameRoot.panelsTop #roomPanel, #gameRoot.panelsTop #buildMenu, #gameRoot.panelsTop #beastPanel,
+#gameRoot.panelsTop #genePanel, #gameRoot.panelsTop #trainPanel, #gameRoot.panelsTop #worldPanel {
+  top:calc(64px + env(safe-area-inset-top)); bottom:auto; max-height:52vh;
+}
+#uiSecTitle, .uiSec { margin:12px 0 2px; font-size:14px; color:#ffe1a0; }
+#buildMenu { left:0; right:0; width:min(430px,calc(100% - 20px)); margin-inline:auto; box-sizing:border-box; }
+/* ===== وضع التحرير باللمس ===== */
+#gameRoot.editing [data-wid] { outline:2px dashed #ffd93d !important; outline-offset:2px; cursor:move; touch-action:none; }
+#editBanner { position:absolute; top:calc(8px + env(safe-area-inset-top)); right:8px; left:8px; z-index:70; background:rgba(20,16,8,.94); border:2px solid #ffd93d; border-radius:14px; padding:8px 10px; direction:rtl; max-height:calc(100% - 16px - env(safe-area-inset-top)); overflow-y:auto; }
+#editBanner[hidden] { display:none; }
+#editBannerRow { display:flex; gap:8px; align-items:center; }
+#editBannerRow span { flex:1; color:#ffe1a0; font-size:12px; font-weight:800; line-height:1.7; }
+#editDoneBtn { flex:none; min-width:64px; min-height:44px; border-radius:12px; border:1px solid #f8dfa2; background:linear-gradient(145deg,#f0ce7c,#c18b39); color:#14291c; font-size:15px; font-weight:900; cursor:pointer; font-family:inherit; }
+#editHiddenBtn { width:100%; margin-top:8px; padding:9px; border-radius:10px; border:1px solid rgba(232,189,98,.35); background:rgba(255,255,255,.08); color:#ffe1a0; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit; }
+#editHiddenList { margin-top:6px; display:flex; flex-direction:column; gap:6px; max-height:30vh; overflow-y:auto; }
+#editHiddenList[hidden] { display:none; }
+.ehRow { display:flex; gap:8px; align-items:center; background:rgba(255,255,255,.06); border:1px solid rgba(232,189,98,.28); border-radius:10px; padding:6px 10px; }
+.ehRow span { flex:1; color:#f5f3e8; font-size:13px; font-weight:800; }
+.ehRow button { min-width:64px; min-height:40px; border-radius:10px; border:1px solid #f8dfa2; background:linear-gradient(145deg,#f0ce7c,#c18b39); color:#14291c; font-size:13px; font-weight:900; cursor:pointer; font-family:inherit; }
+#editTool { position:fixed; z-index:71; display:flex; gap:6px; align-items:center; background:rgba(20,16,8,.95); border:2px solid #ffd93d; border-radius:14px; padding:6px; direction:rtl; box-shadow:0 8px 24px rgba(0,0,0,.5); }
+#editTool[hidden] { display:none; }
+#editTool button { width:44px; height:44px; border-radius:10px; border:1px solid rgba(232,189,98,.55); background:rgba(255,255,255,.1); color:#fff; font-size:19px; font-weight:900; cursor:pointer; font-family:inherit; }
+#editTool button:active { transform:scale(.93); }
+#editSizeVal { color:#f5d58f; font-size:13px; font-weight:900; min-width:48px; text-align:center; }
+#mapSizeRow { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.075); border:1px solid rgba(255,255,255,.16); border-radius:14px; padding:8px 12px; margin-top:9px; font-size:13px; font-weight:800; color:#edf3e9; }
+#mapSizeRow span { flex:none; }
+#mapSizeRow b { color:#f5d58f; }
+#mapSizeRange { flex:1; min-width:0; accent-color:#e8bd62; min-height:32px; }
+@media (max-width:640px) {
+  #gameRoot.toastsBot #toastCtn { bottom:150px; }
+}
+
+/* ===== واجهة Pocket Ants (الشريط العلوي + الأعمدة + الشريط السفلي) ===== */
+#menuBtn { display:none !important; }
+#statusPill[hidden], #vitalsPanel[hidden] { display:none; }
+/* الشريط العلوي: حبة داكنة واحدة فيها العدادات + كل الموارد */
+#topBar { left:200px; right:64px; top:calc(10px + env(safe-area-inset-top)); background:rgba(18,38,22,.94); border:2px solid rgba(255,255,255,.22); border-radius:16px; padding:7px 8px; box-shadow:0 6px 18px rgba(0,0,0,.35); flex-wrap:nowrap; max-width:none; overflow-x:auto; pointer-events:auto; scrollbar-width:none; align-items:center; }
+#topBar::-webkit-scrollbar { display:none; }
+#topBar .stat { background:transparent; border:none; box-shadow:none; backdrop-filter:none; padding:5px 12px; font-size:15px; white-space:nowrap; flex:none; }
+#topBar .stat + .stat { border-right:1px solid rgba(255,255,255,.18); border-radius:0; }
+#topBar .sep { flex:none; width:2px; align-self:stretch; background:rgba(232,189,98,.5); border-radius:2px; margin:2px 4px; }
+#topBar #resBar { position:static; display:flex; gap:2px; max-width:none; max-height:none; overflow:visible; background:none; border:none; box-shadow:none; padding:0; direction:rtl; flex:none; }
+#topBar #resBar span { background:transparent; border:none; box-shadow:none; padding:5px 7px; font-size:13px; white-space:nowrap; }
+#topBar #resBar b { color:#f5d58f; }
+/* حبة الحالة تحت الشريط */
+#statusPill { position:absolute; top:calc(58px + env(safe-area-inset-top)); right:12px; z-index:20; background:rgba(18,38,22,.94); border:2px solid rgba(255,255,255,.22); color:#fff; border-radius:999px; padding:5px 12px; font-size:13px; font-weight:800; box-shadow:0 4px 14px rgba(0,0,0,.3); white-space:nowrap; }
+/* عدادات الصحة: علبة أعلى اليسار */
+#vitalsPanel { position:absolute; top:calc(10px + env(safe-area-inset-top)); left:10px; z-index:20; background:rgba(18,38,22,.94); border:2px solid rgba(255,255,255,.22); border-radius:14px; padding:9px 10px; display:flex; flex-direction:column; gap:7px; width:172px; box-shadow:0 6px 18px rgba(0,0,0,.35); }
+#vitalsPanel .barRow { background:transparent; border:none; box-shadow:none; padding:0; }
+#vitalsPanel .barRow > span { display:none; }
+#vitalsPanel .bar { min-width:0; height:9px; }
+#stFill { background:linear-gradient(90deg,#f5b301,#ffe27a); }
+#queenFill { background:linear-gradient(90deg,#7b2ff7,#c58bff); }
+#pauseBtn { top:calc(124px + env(safe-area-inset-top)); left:12px; }
+#helpBtn { top:206px; }
+/* الخريطة يمين + لافتة */
+#mapWrap { left:auto; right:10px; top:calc(96px + env(safe-area-inset-top)); background:rgba(18,52,26,.95); border-radius:16px; padding:6px; width:148px; height:148px; box-shadow:0 8px 22px rgba(0,0,0,.4); overflow:visible; }
+#gameRoot:not(.mapRight) #mapWrap { left:10px; right:auto; }
+#minimapCtn { border-radius:10px; }
+#mapLabel { position:absolute; bottom:-30px; right:0; left:0; text-align:center; color:#fff; font-size:12px; font-weight:800; text-shadow:0 1px 4px #000; white-space:nowrap; background:rgba(10,20,14,.85); border:1px solid rgba(255,255,255,.25); border-radius:999px; padding:3px 8px; pointer-events:none; }
+#gameRoot.mapRight #mapStack { left:auto; right:10px; }
+#mapStack button { width:56px; height:52px; border-radius:14px; border:2px solid #ffe6b0; background:linear-gradient(145deg,#ffc44d,#ef8f0a); color:#5a2e00; box-shadow:0 6px 16px rgba(0,0,0,.4); font-size:19px; }
+#mapStack button small { font-size:10px; font-weight:800; }
+/* تبويبات الجيش: عمود يسار */
+#gameRoot.cmdLeft #cmdBar { left:10px; right:auto; top:calc(178px + env(safe-area-inset-top)); bottom:auto; flex-direction:column; flex-wrap:nowrap; align-items:stretch; width:128px; max-height:calc(100% - 300px); overflow-y:auto; background:rgba(216,236,224,.96); border:2px solid rgba(255,255,255,.7); border-radius:16px; padding:8px; gap:7px; scrollbar-width:none; box-shadow:0 6px 18px rgba(0,0,0,.35); }
+#gameRoot.cmdLeft #cmdBar::-webkit-scrollbar { display:none; }
+#gameRoot.cmdLeft #selCount { width:auto; margin:0; color:#1d3a24; background:rgba(255,255,255,.55); border-color:rgba(46,94,60,.45); }
+#gameRoot.cmdLeft #cmdBar button { flex:none; width:100%; padding:10px 4px; font-size:12px; background:rgba(46,94,60,.22); border:1px solid rgba(46,94,60,.35); color:#1d3a24; border-radius:12px; min-height:44px; box-shadow:none; white-space:normal; line-height:1.3; font-weight:800; }
+#quickBar { bottom:calc(12px + env(safe-area-inset-bottom)); left:10px; top:auto; flex-direction:row; gap:8px; }
+#cmdSelWorkBtn { background:linear-gradient(145deg,#8fc1f5,#4a90d9) !important; border-color:#d6e9ff !important; color:#10233d !important; }
+/* الشريط السفلي: حبة برتقالية */
+#actionCtn { left:50%; right:auto; top:auto; bottom:calc(10px + env(safe-area-inset-bottom)); transform:translateX(-50%); flex-direction:row; align-items:stretch; width:max-content; max-width:97vw; background:rgba(18,38,22,.94); border:2px solid rgba(255,255,255,.25); border-radius:20px; padding:8px 10px; gap:8px; overflow-x:auto; overflow-y:hidden; max-height:none; scrollbar-width:none; }
+#actionCtn::-webkit-scrollbar { display:none; }
+#actionCtn[hidden] { display:none; }
+#actionCtn button { flex:1 0 auto; background:linear-gradient(145deg,#ffc44d,#ef8f0a); border:2px solid #ffe6b0; color:#5a2e00; border-radius:14px; padding:10px 15px; font-size:14px; white-space:nowrap; min-height:54px; width:auto; box-shadow:0 4px 10px rgba(0,0,0,.3); }
+#actionCtn button.mini { font-size:13px; }
+#actionCtn button:disabled { background:#8a8f96; border-color:#c9c9c9; color:#f0f0f0; }
+/* الزوم يمين */
+#zoomCtn { left:auto; right:10px; top:auto; bottom:calc(12px + env(safe-area-inset-bottom)); }
+#zoomCtn button { border-radius:50%; border:2px solid #e8a33d; background:rgba(18,38,22,.94); box-shadow:0 6px 16px rgba(0,0,0,.4); }
+/* أنواع المحمول فوق الشريط */
+#typeBar { bottom:calc(88px + env(safe-area-inset-bottom)); right:12px; top:auto; }
+@media (max-width:640px) {
+  #topBar { left:150px; right:60px; }
+  #topBar .stat { font-size:12px; padding:4px 8px; }
+  #topBar #resBar span { font-size:11px; padding:4px 5px; }
+  #statusPill { font-size:11px; top:calc(54px + env(safe-area-inset-top)); }
+  #vitalsPanel { width:138px; padding:7px 8px; }
+  #pauseBtn { top:calc(112px + env(safe-area-inset-top)); }
+  #mapWrap { width:104px; height:104px; top:calc(96px + env(safe-area-inset-top)); }
+  #gameRoot.cmdLeft #cmdBar { width:92px; top:calc(160px + env(safe-area-inset-top)); }
+  #gameRoot.cmdLeft #cmdBar button { font-size:11px; padding:8px 2px; min-height:40px; }
+  #mapStack button { height:42px; font-size:18px; }
+  #actionCtn { left:8px; right:58px; transform:none; max-width:none; width:auto; }
+  #actionCtn button { font-size:12px; padding:8px 11px; min-height:48px; }
+  #zoomCtn { bottom:calc(12px + env(safe-area-inset-bottom)); top:auto; }
+  #quickBar { bottom:calc(84px + env(safe-area-inset-bottom)); }
+  #typeBar { display:none; }
+}
+@media (max-height:500px) {
+  #gameRoot.cmdLeft #cmdBar { top:calc(150px + env(safe-area-inset-top)); max-height:calc(100% - 240px); }
+  #mapWrap { width:110px; height:110px; top:calc(96px + env(safe-area-inset-top)); }
+}
+/* شاشات قصيرة (لاندسكيب): عمود اليمين مضغوط حتى لا يتداخل مع الزوم */
+@media (max-height:640px) {
+  #mapWrap { width:104px !important; height:104px !important; }
+  #mapLabel { font-size:11px; bottom:-26px; }
+  #mapStack { gap:6px; }
+  #mapStack button { width:50px; height:38px; font-size:16px; }
+  #mapStack button small { font-size:9px; }
+  #zoomCtn { gap:6px; }
+  #zoomCtn button { width:38px; height:38px; font-size:18px; }
+  #gameRoot.cmdLeft #cmdBar { top:calc(160px + env(safe-area-inset-top)); }
+  #gameRoot.cmdLeft #cmdBar button { min-height:38px; padding:7px 2px; }
+}
+@media (max-height:480px) {
+  #mapWrap { width:84px !important; height:84px !important; top:calc(92px + env(safe-area-inset-top)); }
+  #mapStack button { width:46px; height:32px; font-size:14px; }
+  #zoomCtn button { width:32px; height:32px; font-size:15px; }
+}
+
+/* ===== 3D GLASS V3 — ثيم زجاجي فاخر (من ملف مرفق) ===== */
+/* ANT COLONY 6.3.6 — 3D Glass Premium Pass 3 */
+:root{
+ --ac3-glass:rgba(7,24,22,.78);
+ --ac3-edge:rgba(225,255,241,.28);
+ --ac3-mint:#9affd3;
+ --ac3-deep:rgba(3,14,18,.78);
+ --ac3-shadow:0 18px 42px rgba(0,0,0,.42);
+}
+/* Keep the game's hidden state authoritative. The previous flex override must
+   never force a closed action dock to remain visible. */
+#actionCtn[hidden],#mapStack[hidden],#quickBar[hidden],#cmdBar[hidden],
+#worldPanel[hidden],#beastPanel[hidden],#genePanel[hidden],#trainPanel[hidden],
+#buildMenu[hidden],#roomPanel[hidden],#settingsPanel[hidden],#pausePanel[hidden],
+#mapWrap[hidden],#mapOpenBtn[hidden],#menuBtn[hidden]{display:none!important}
+
+/* 3D floating dock: layered glass, bevel and tactile depth */
+#actionCtn{
+ isolation:isolate;
+ background:
+  radial-gradient(ellipse at 50% -35%,rgba(151,255,209,.23),transparent 66%),
+  linear-gradient(145deg,rgba(20,57,46,.91),rgba(3,17,22,.88))!important;
+ border:1px solid rgba(223,255,241,.34)!important;
+ box-shadow:0 22px 54px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.23),inset 0 -8px 20px rgba(0,0,0,.18),0 0 26px rgba(93,255,185,.09)!important;
+}
+#actionCtn:before{
+ content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;z-index:-1;
+ background:linear-gradient(120deg,rgba(255,255,255,.12),transparent 28%,transparent 72%,rgba(151,255,209,.07));
+}
+#actionCtn button{
+ position:relative;isolation:isolate;overflow:hidden;
+ min-height:50px!important;
+ border:1px solid rgba(228,255,243,.27)!important;
+ background:linear-gradient(155deg,rgba(104,174,139,.48),rgba(25,75,58,.72) 52%,rgba(7,34,31,.88))!important;
+ box-shadow:0 5px 0 rgba(2,17,17,.55),0 8px 16px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.27),inset 0 -5px 10px rgba(0,0,0,.16)!important;
+ text-shadow:0 2px 8px rgba(0,0,0,.62)!important;
+ transition:transform .16s ease,box-shadow .16s ease,filter .16s ease!important;
+}
+#actionCtn button:before{
+ content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;
+ background:linear-gradient(115deg,transparent 18%,rgba(255,255,255,.2) 48%,transparent 76%);
+ transform:translateX(-145%);transition:transform .72s cubic-bezier(.2,.7,.2,1);
+}
+#actionCtn button:active{
+ transform:translateY(3px) scale(.975)!important;
+ box-shadow:0 1px 0 rgba(2,17,17,.55),0 3px 8px rgba(0,0,0,.24),inset 0 2px 8px rgba(0,0,0,.22)!important;
+}
+#actionCtn button:active:before{transform:translateX(145%)}
+
+/* Glass panels gain a soft illuminated rim and layered depth */
+#worldPanel,#beastPanel,#genePanel,#trainPanel,#buildMenu,#roomPanel,
+#settingsPanel,#pausePanel,#aboutPanel,#privacyPanel,#helpCard{
+ position:relative;isolation:isolate;
+ background:
+  radial-gradient(ellipse at 8% 0%,rgba(109,255,191,.14),transparent 43%),
+  linear-gradient(145deg,rgba(17,48,41,.96),rgba(4,17,23,.94))!important;
+ border:1px solid rgba(225,255,242,.31)!important;
+ box-shadow:0 28px 76px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.2),inset 0 -18px 35px rgba(0,0,0,.15),0 0 28px rgba(93,255,185,.08)!important;
+}
+#worldPanel:before,#beastPanel:before,#genePanel:before,#trainPanel:before,
+#buildMenu:before,#roomPanel:before,#settingsPanel:before,#pausePanel:before{
+ content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;z-index:-1;
+ background:linear-gradient(132deg,rgba(255,255,255,.09),transparent 24%,transparent 75%,rgba(127,255,198,.055));
+}
+#worldTabs button,#geneTabs button,#trainTabs button,#casteRow button,
+#roomPanel button,#buildMenu button,#beastPanel button,#genePanel button,
+#trainPanel button,#worldPanel button{
+ min-height:42px;
+ background:linear-gradient(150deg,rgba(216,255,235,.15),rgba(117,188,151,.055))!important;
+ border:1px solid rgba(225,255,241,.24)!important;
+ box-shadow:0 4px 10px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.13)!important;
+ transition:transform .16s ease,filter .16s ease,box-shadow .16s ease!important;
+}
+#worldTabs button:active,#geneTabs button:active,#trainTabs button:active,
+#casteRow button:active,#roomPanel button:active,#buildMenu button:active,
+#beastPanel button:active,#genePanel button:active,#trainPanel button:active,
+#worldPanel button:active{transform:translateY(2px) scale(.985)!important;filter:brightness(1.18)}
+#worldTabs button.sel,#geneTabs button.sel,#trainTabs button.sel{
+ background:linear-gradient(145deg,rgba(107,232,169,.82),rgba(24,119,83,.88))!important;
+ border-color:rgba(194,255,223,.7)!important;
+ box-shadow:0 5px 16px rgba(37,204,132,.24),inset 0 1px 0 rgba(255,255,255,.3)!important;
+}
+
+/* Small HUD elements read as individual glass capsules */
+#topBar .stat,#resBar span,#statusPill,#vitalsPanel,#typeBar span,
+#mapLabel,#nestLv,#nestRes,#underHint,#selCount{
+ border-color:rgba(230,255,243,.24)!important;
+ box-shadow:0 7px 18px rgba(0,0,0,.23),inset 0 1px 0 rgba(255,255,255,.12)!important;
+}
+#mapStack button,#quickBar button,#zoomCtn button,#cmdBar button,
+#nestSide button,#nestBottom button{
+ border:1px solid rgba(228,255,243,.32)!important;
+ background:linear-gradient(150deg,rgba(79,151,115,.83),rgba(7,33,31,.92))!important;
+ box-shadow:0 7px 0 rgba(0,0,0,.24),0 12px 22px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.23)!important;
+}
+#mapStack button:active,#quickBar button:active,#zoomCtn button:active,
+#cmdBar button:active,#nestSide button:active,#nestBottom button:active{
+ transform:translateY(3px) scale(.97)!important;
+ box-shadow:0 2px 0 rgba(0,0,0,.24),0 5px 10px rgba(0,0,0,.22),inset 0 2px 7px rgba(0,0,0,.18)!important;
+}
+#menuBtn,#gearBtn,#mapOpenBtn,#nestSetBtn,#nestExitBtn,#nestQuestBtn,
+#nestBackFab,#helpBtn,#pauseBtn{
+ border:1px solid rgba(235,255,246,.42)!important;
+ box-shadow:0 9px 0 rgba(0,0,0,.2),0 14px 25px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.28)!important;
+}
+button:focus-visible{outline:2px solid var(--ac3-mint)!important;outline-offset:3px!important}
+@media(max-width:640px){
+ #actionCtn{padding:8px!important;gap:7px!important}
+ #actionCtn button{min-height:47px!important}
+ #worldPanel,#beastPanel,#genePanel,#trainPanel,#buildMenu,#roomPanel{
+  max-height:calc(100dvh - 112px)!important;overflow-y:auto!important;
+  padding-bottom:calc(14px + env(safe-area-inset-bottom))!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ #actionCtn button,#worldTabs button,#geneTabs button,#trainTabs button,
+ #casteRow button,#roomPanel button,#buildMenu button,#beastPanel button,
+ #genePanel button,#trainPanel button,#worldPanel button{transition:none!important}
+}
+/* ANT COLONY 6.3.6 — premium glass interface layer */
+:root{--ag-glass:rgba(9,25,22,.68);--ag-glass-2:rgba(18,43,36,.78);--ag-line:rgba(220,255,239,.24);--ag-white:#f3fff8;--ag-mint:#8fffd0;--ag-gold:#ffd477;--ag-shadow:0 18px 48px rgba(0,0,0,.42)}
+#gameRoot{--ag-radius:22px}
+#gameRoot button{font-family:inherit;-webkit-tap-highlight-color:transparent;transition:transform .18s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease;}
+#gameRoot button:not(:disabled):active{transform:scale(.96);filter:brightness(1.12)}
+/* floating command dock */
+#actionCtn{left:50%!important;right:auto!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;top:auto!important;transform:translateX(-50%)!important;width:max-content!important;max-width:calc(100vw - 20px)!important;display:flex;flex-direction:row!important;align-items:center;gap:7px!important;padding:9px!important;border:1px solid var(--ag-line)!important;border-radius:24px!important;background:linear-gradient(135deg,rgba(13,37,31,.82),rgba(5,17,21,.72))!important;box-shadow:var(--ag-shadow),inset 0 1px 0 rgba(255,255,255,.13)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;}
+#actionCtn::-webkit-scrollbar{display:none}
+#actionCtn button{flex:0 0 auto!important;min-width:58px;width:auto!important;min-height:48px!important;padding:8px 12px!important;border:1px solid rgba(210,255,235,.2)!important;border-radius:16px!important;background:linear-gradient(145deg,rgba(83,151,119,.42),rgba(20,68,53,.5))!important;color:#f2fff7!important;font-size:12px!important;font-weight:850!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 5px 14px rgba(0,0,0,.18)!important;text-shadow:0 1px 5px rgba(0,0,0,.35);}
+#actionCtn button:disabled{opacity:.42!important;filter:grayscale(.5)}
+#menuBtn,#gearBtn,#mapOpenBtn,#nestSetBtn,#nestExitBtn,#nestQuestBtn,#nestBackFab,#helpBtn,#pauseBtn{border:1px solid rgba(230,255,244,.34)!important;background:linear-gradient(145deg,rgba(32,75,62,.78),rgba(7,25,25,.82))!important;color:#f4fff8!important;box-shadow:0 9px 25px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.2)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#gearBtn{border-radius:17px!important}
+/* all large panels */
+#roomPanel,#buildMenu,#beastPanel,#genePanel,#trainPanel,#worldPanel,#settingsPanel,#pausePanel,#aboutPanel,#privacyPanel,#helpCard{color:var(--ag-white)!important;background:linear-gradient(145deg,rgba(17,45,39,.91),rgba(5,19,25,.88))!important;border:1px solid rgba(215,255,239,.26)!important;border-radius:26px!important;box-shadow:0 24px 70px rgba(0,0,0,.56),inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 35px rgba(105,255,195,.045)!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);}
+#worldPanel,#beastPanel,#genePanel,#trainPanel,#buildMenu,#roomPanel{left:50%!important;right:auto!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;top:auto!important;transform:translateX(-50%);width:min(400px,calc(100vw - 32px))!important;max-height:min(66vh,600px)!important;padding:18px!important;overflow:auto!important;}
+#worldTitle,#beastTitle,#geneTitle,#trainTitle,#roomTitle,#buildTitle,#helpHeading{color:#eafff4!important;font-size:19px!important;font-weight:950!important;letter-spacing:.1px;text-shadow:0 2px 16px rgba(102,255,195,.18);padding-bottom:10px;border-bottom:1px solid rgba(220,255,240,.13);margin-bottom:12px!important}
+#worldTabs button,#geneTabs button,#trainTabs button,#casteRow button,#roomPanel button,#buildMenu button,#beastPanel button,#genePanel button,#trainPanel button,#worldPanel button{border:1px solid rgba(216,255,237,.2)!important;border-radius:14px!important;background:rgba(210,255,235,.09)!important;color:#edfff5!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.09)!important;font-weight:800!important;}
+#worldTabs button.sel,#geneTabs button.sel,#trainTabs button.sel{background:linear-gradient(135deg,rgba(75,190,139,.65),rgba(26,112,83,.72))!important;border-color:rgba(161,255,211,.55)!important;color:white!important;box-shadow:0 5px 18px rgba(29,190,127,.18)!important}
+#worldBody,#geneBody,#trainBody,#geneSub,#trainSub,#beastList,#buildList,#roomDesc{color:#e8fff3!important}
+#worldBody button,#geneBody button,#trainBody button,#beastList button,#buildList button{background:rgba(232,255,245,.075)!important;border-color:rgba(220,255,240,.17)!important}
+#worldCloseBtn,#geneCloseBtn,#trainCloseBtn,#beastCloseBtn,#roomCloseBtn,#buildCancelBtn,#settingsCloseBtn,#aboutCloseBtn,#privacyCloseBtn{background:linear-gradient(135deg,rgba(59,173,125,.8),rgba(22,105,78,.88))!important;border-color:rgba(190,255,222,.42)!important;color:white!important;min-height:44px}
+/* side HUD and status chips */
+#topBar .stat,#resBar span,#statusPill,#vitalsPanel,#typeBar,#mapWrap,#mapLabel,#nestLv,#nestRes,#underHint,#cmdBar,#selCount{background:rgba(7,24,22,.66)!important;border:1px solid rgba(224,255,241,.2)!important;border-radius:15px!important;color:#f1fff7!important;box-shadow:0 8px 22px rgba(0,0,0,.2)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#mapStack button,#quickBar button,#zoomCtn button,#cmdBar button{border:1px solid rgba(226,255,242,.27)!important;border-radius:15px!important;background:linear-gradient(145deg,rgba(36,100,77,.78),rgba(8,31,29,.82))!important;color:#f3fff7!important;box-shadow:0 8px 20px rgba(0,0,0,.28)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#gameRoot.cmdLeft #cmdBar{background:rgba(7,24,22,.68)!important;border:1px solid var(--ag-line)!important;border-radius:20px!important;padding:7px!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#gameRoot.cmdLeft #cmdBar button{background:rgba(84,157,121,.24)!important;color:#f1fff7!important;border-color:rgba(220,255,239,.16)!important}
+#cmdSelWorkBtn{background:rgba(64,145,206,.42)!important;color:white!important}
+#mapStack button small,#nestSide button small,#nestBottom button small{color:inherit!important}
+#nestSide button,#nestBottom button{background:linear-gradient(145deg,rgba(23,67,54,.78),rgba(5,23,24,.84))!important;border:1px solid rgba(226,255,242,.24)!important;border-radius:17px!important;color:#f3fff7!important;box-shadow:0 8px 22px rgba(0,0,0,.3)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#helpModal{background:rgba(0,8,9,.55)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#helpCard{max-height:82vh;overflow:auto}
+#helpCard ul{color:#eafff3}
+/* elegant entrance, respects reduced-motion */
+@keyframes agGlassIn{from{opacity:0;translate:0 14px;scale:.985}to{opacity:1;translate:0 0;scale:1}}
+#worldPanel:not([hidden]),#beastPanel:not([hidden]),#genePanel:not([hidden]),#trainPanel:not([hidden]),#buildMenu:not([hidden]),#roomPanel:not([hidden]){animation:agGlassIn .24s cubic-bezier(.2,.8,.2,1) both}
+@media(max-width:640px){
+ #actionCtn{left:8px!important;right:8px!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;width:auto!important;max-width:none!important;transform:none!important;justify-content:flex-start!important;border-radius:20px!important;padding:7px!important;gap:6px!important}
+ #actionCtn button{min-width:52px!important;min-height:45px!important;padding:7px 9px!important;font-size:11px!important;border-radius:14px!important}
+ #worldPanel,#beastPanel,#genePanel,#trainPanel,#buildMenu,#roomPanel{width:calc(100vw - 16px)!important;max-height:76vh!important;bottom:calc(8px + env(safe-area-inset-bottom))!important;padding:14px!important;border-radius:22px!important}
+ #worldTitle,#beastTitle,#geneTitle,#trainTitle,#roomTitle,#buildTitle{font-size:17px!important}
+ #worldTabs,#geneTabs,#trainTabs{gap:6px!important}
+ #worldTabs button,#geneTabs button,#trainTabs button{font-size:11px!important;padding:9px 5px!important;min-height:40px}
+ #gameRoot.cmdLeft #cmdBar{width:88px!important;top:calc(154px + env(safe-area-inset-top))!important;max-height:calc(100% - 250px)!important}
+ #gameRoot.cmdLeft #cmdBar button{font-size:10px!important;min-height:38px!important}
+ #mapStack button{width:48px!important;height:42px!important}
+}
+@media(prefers-reduced-motion:reduce){#gameRoot button{transition:none!important}#worldPanel:not([hidden]),#beastPanel:not([hidden]),#genePanel:not([hidden]),#trainPanel:not([hidden]),#buildMenu:not([hidden]),#roomPanel:not([hidden]){animation:none!important}}
+/* ===== توافق الطبقة الزجاجية مع تفضيلات اللاعب (لا تكسرها) ===== */
+#buildMenu{margin:0!important}
+#gameRoot.panelsTop #worldPanel,#gameRoot.panelsTop #beastPanel,#gameRoot.panelsTop #genePanel,#gameRoot.panelsTop #trainPanel,#gameRoot.panelsTop #buildMenu,#gameRoot.panelsTop #roomPanel{top:calc(64px + env(safe-area-inset-top))!important;bottom:auto!important;max-height:52vh!important}
+#gameRoot.menuLeft #actionCtn{left:10px!important;right:52%!important;transform:none!important;width:auto!important;max-width:none!important}
+/* ===== وضع lowfx: الأجهزة الضعيفةة بلا بلور خلفية (البلور يقتل الـGPU) ===== */
+#gameRoot.lowfx *,#gameRoot.lowfx *::before,#gameRoot.lowfx *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+</style>
+
+<script type="module" src="src/ant-game.js"></script>
+
+<script>
+(function () {
+  function showStartupError(message) {
+    var host = document.getElementById("loadingEl");
+    if (!host) return;
+    host.hidden = false;
+    host.style.display = "flex";
+    host.replaceChildren();
+
+    var card = document.createElement("section");
+    card.className = "bootErrorCard";
+    card.setAttribute("role", "alert");
+    card.setAttribute("aria-live", "assertive");
+
+    var icon = document.createElement("div");
+    icon.className = "bootErrorIcon";
+    icon.textContent = "⚠️";
+
+    var title = document.createElement("h2");
+    title.textContent = "تعذّر تشغيل اللعبة";
+
+    var description = document.createElement("p");
+    description.textContent = message || "واجهنا مشكلة أثناء تجهيز اللعبة. تحقق من اتصال الإنترنت ثم حاول مرة أخرى.";
+
+    var retry = document.createElement("button");
+    retry.type = "button";
+    retry.textContent = "إعادة المحاولة";
+    retry.addEventListener("click", function () { window.location.reload(); });
+
+    var note = document.createElement("small");
+    note.textContent = "إذا تكررت المشكلة، جرّب فتح اللعبة بعد التأكد من اتصال الإنترنت وتحديث الصفحة.";
+
+    card.append(icon, title, description, retry, note);
+    host.appendChild(card);
+  }
+
+  window.showColonyStartupError = showStartupError;
+
+  // A failed module download (for example, a temporary CDN/network failure)
+  // happens before the game's own boot() catch handler can execute.
+  window.addEventListener("error", function (event) {
+    var target = event.target;
+    if (target && target.tagName === "SCRIPT" && target.type === "module") {
+      showStartupError("تعذّر تحميل ملفات تشغيل اللعبة. تحقق من اتصال الإنترنت ثم أعد المحاولة.");
+    }
+  }, true);
+})();
+</script>

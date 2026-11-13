@@ -1,0 +1,12 @@
+R_DEF: Internal format may change without notice
+local
+color honey_gold
+color leaf_green
+color soil_dark
+drawable ic_launcher_foreground
+id retryBtn
+layout view_error
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.AntColony
